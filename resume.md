@@ -35,25 +35,27 @@ Experience
   
   Participated in Government funded software development program, where I was part of a team which developed a video processing framework for online game footage. I utilized video processing and statistical analysis to provide automated coaching tips to players.
 
----------
+
 Research
 --------------------
+
 #### International
 * “Implementation of user playstyle coaching using video processing and statistical methods in league of legends”, **Shin Young Kim**, Dohyeon Kim, HyungGeun Ahn, Byeongtae Ahn, 2020, published on Multimedia Tools and Applications (https://doi.org/10.1007/s11042-020-09413-4)
 
 #### Domestic
 * “A study on the Failure Function of Logistics Industrial Equipment Using Bayesian Aggregation: An Application to Electric Forklift Engine Failure Rate”, **Shinyoung Kim**, Jinwoo Choi, Kwangshik Nam, Hyunji Moon, 2021.
 
----------
+
 Selected Open Source Projects
 --------------------
 
 * **“SBC”** (https://github.com/hyunjimoon/SBC)
 A R package for Simulation Based Calibration on Stan and brms models in collaboration with Hyunji Moon, Martin Modrák, and Teemu Säilynoja. I wrote the initial version and am currently helping maintaining the package which contains various tools for running SBC and analyzing results.
 
----------
+
 Skills and Personal Info
 --------------------
+
 Programming: Python (High), C/C++ (High), R (High), Javascript/ES6(Intermediate)
 
 Language skills : Korean(native), English(Fluent)
