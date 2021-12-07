@@ -12,7 +12,3 @@ explore "program space" by code transformation.
 
 
 You can check out my cv here
-
-### Email
-
-tttllshin@gmail.com
