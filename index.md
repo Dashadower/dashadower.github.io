@@ -1,7 +1,6 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: Shinyoung Kim
 ---
 
 I'm a compsci undergrad at [Kookmin University](https://english.kookmin.ac.kr/). My current research interest lies in
