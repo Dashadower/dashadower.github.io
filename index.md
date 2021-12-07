@@ -2,8 +2,6 @@
 layout: page
 ---
 
-### About me
-
 I'm a compsci undergrad at [Kookmin University](https://english.kookmin.ac.kr/). My current research interest lies in
 Bayesian statistics and [probabilistic programming](https://en.wikipedia.org/wiki/Probabilistic_programming), especially on
 how we can translate probabilistic models into formally verified programs with relative ease.
