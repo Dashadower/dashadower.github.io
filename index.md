@@ -11,4 +11,4 @@ Probabilistic programming is intriguing in the sense that probability spaces mee
 explore "program space" by code transformation.
 
 
-You can check out my cv here
+You can check out my resume [here](/resume)
