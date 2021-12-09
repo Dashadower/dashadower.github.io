@@ -40,7 +40,7 @@ Research
 --------------------
 
 #### International
-* “Implementation of user playstyle coaching using video processing and statistical methods in league of legends”, **Shin Young Kim**, Dohyeon Kim, HyungGeun Ahn, Byeongtae Ahn, 2020, published on Multimedia Tools and Applications (<https://doi.org/10.1007/s11042-020-09413-4>)
+* “Implementation of user playstyle coaching using video processing and statistical methods in league of legends”, **Shinyoung Kim**, Dohyeon Kim, HyungGeun Ahn, Byeongtae Ahn, 2020, published on Multimedia Tools and Applications (<https://doi.org/10.1007/s11042-020-09413-4>)
 
 #### Domestic
 * “A study on the Failure Function of Logistics Industrial Equipment Using Bayesian Aggregation: An Application to Electric Forklift Engine Failure Rate”, **Shinyoung Kim**, Jinwoo Choi, Kwangshik Nam, Hyunji Moon, 2021.
