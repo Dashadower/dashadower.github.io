@@ -24,9 +24,9 @@ The "function declaration" in the above statement, $\lambda x. x * x + 1$ is cal
 This is why unnamed functions in typical programming languages are called *lambda functions*, because a lambda function yields some value defined by relationships between its arguments and the function body. Hence it's an "unnamed function".
 
 Suppose lambda expressions didn't exist. All function calls must be declared with let terms. For example, say we wanted to calculate $\int_0^1 x^2 + 1$ with a defined integration function `integrate(lb, ub, f)`. This can be written as:
-$$$
+$$
 \mathbf{let} \ f(x) = x^2 + x \ \mathbf{in} \ \text{integrate}(0, 1, f)
-$$$
+$$
 
 But with lambda expressions, this gets simplified into:
 $$
