@@ -24,11 +24,13 @@ The "function declaration" in the above statement, $\lambda x. x * x + 1$ is cal
 This is why unnamed functions in typical programming languages are called *lambda functions*, because a lambda function yields some value defined by relationships between its arguments and the function body. Hence it's an "unnamed function".
 
 Suppose lambda expressions didn't exist. All function calls must be declared with let terms. For example, say we wanted to calculate $\int_0^1 x^2 + 1$ with a defined integration function `integrate(lb, ub, f)`. This can be written as:
+
 $$
 \mathbf{let} \ f(x) = x^2 + x \ \mathbf{in} \ \text{integrate}(0, 1, f)
 $$
 
 But with lambda expressions, this gets simplified into:
+
 $$
 \text{integrate}(0, 1, \lambda x. x^2 + 1)
 $$
@@ -36,7 +38,8 @@ $$
 the $\lambda$-calculus we will be looking at in this chapter only works with *untyped* $\lambda$-calculus. This means we don't consider the types of variables and expressions. Untyped $\lambda$-calculus is simpler to describe, but isn't sufficient in describing mathematical logic. We need *typed* $\lambda$-calculus as a stronger tool.
 
 #### Syntax and Basic Rules
-$\lambda$-calculus is composed of expressions called *$\lambda$-terms*. We will define the set of all lambda terms $E$, inductively, like from [[2. Formal Logic#]]:
+$\lambda$-calculus is composed of expressions called *$\lambda$-terms*. We will define the set of all lambda terms $E$, inductively, like from formal logic:
+
 $$
 \begin{aligned}
 E &\rightarrow x, \ x \in V \\
@@ -50,10 +53,13 @@ $$
 3. A term of form $E_0 \ E_1$ is called *application* of $E_0$ to $E_1$. Equivalently, we see $E_0$ as the *operator* and $E_1$ as *operand*.
 
 Application is left associative, meaning
+
 $$
 E_0 \ E_1 \ E_2 = ((E_0 \ E_1) \ E_2)
 $$
+
 and in abstractions bounded variables are bound to the closest binder, meaning:
+
 $$
 \lambda x. (\lambda y. x \ y \ x) \ x = \lambda x. ((\lambda y. ((x \ y) \ x)) \ x)
 $$
@@ -63,6 +69,7 @@ $$
 ##### $\alpha$-Conversion
 
 Since every abstraction $\lambda x. E$ binds some variable $x$ in scope $E$. We need to identify the set of *free variables* that's allowed in an expression. The set $\text{FV}(E)$ of free variables in expression E is defined as:
+
 $$
 \begin{aligned}
 \text{FV}(x) &= {x}, \ x \in V \\
@@ -72,6 +79,7 @@ $$
 $$
 
 Once we identifed the set of free variables in an expression $E$, we can try and *substitute* all free variables in $E$ with another expression. Let $E/\delta$ denote substituting occurences of variable $x$ in $E$, with $\delta \ x$. $E/\delta$ is defined as:
+
 $$
 \begin{aligned}
 x/\delta &= \delta \ x \\
@@ -79,7 +87,9 @@ x/\delta &= \delta \ x \\
 (\lambda x. E)/ \delta &= \lambda x_{new}. (E / [\delta \ | \ x:x_{new}])
 \end{aligned}
 $$
+
 where
+
 $$
 x_{new} \notin \bigcup_{\omega \in \text{FV}(E) - \{x\}} \text{FV}(\delta \ \omega)
 $$
@@ -91,6 +101,7 @@ Let's go through this step by step:
 3. If $E$ is an abstraction , $x$ is not a free variable. So we cannot just substitute $\delta \ x$. Instead, we can *rename* $x$ into some other variable $x_{new}$, and then perform substitution on $x_{new}$. However, if we were to change $x$ into some variable that's being used inside E, this can change the meaning of the abstraction. For example, suppose we have $\lambda x. y \ x$. It will always return some variable $y$, regardless of x. But if you changed the bounded variable $x$ to $y$: $\lambda y. y \ x$, it now becomes the identity function. When we are substituting variables in an abstraction, we are free to change the bound variable $x$ to $x_{new}$, *given that the new variable $x_{new}$ isn't being used in the abstraction.* This is equivalent to $x_{new} \notin \bigcup_{\omega \in \text{FV}(E) - \{x\}} \text{FV}(\delta \ \omega)$, since free variables are variables being used inside the terms.
 
 Applying the substitution rule to $\lambda x. E$, resulting in $\lambda x_{new}. (E/x \rightarrow x_{new})$ is called *renaming*. And if some expression $E'$ is obtained after applying multiple renamings to $E$, we say that $E$ and $E'$ are *$\alpha$-equivalent*. Then, it can be shown that:
+
 $$
 E \equiv E'
 $$
@@ -111,12 +122,15 @@ are functionally equivalent.
 
 ##### Reduction
 Recall that $\lambda$-calculus is just a way to represent repeated function applications. This leads us to thinking, if we compose applications, couldn't we *reduce* them so that we can sequentially apply the function? The answer to this is yes. Consider the following lambda term:
+
 $$
 (\lambda x. E) E'
 $$
+
 A term of this form is called a *redex*, which represents applying the function $(\lambda x. E)$ to the argument $E'$. This means $(\lambda x. E)$ should yield the value of $E$ when $x$ in $E$ denotes the value of $E'$. In other words, we *substitute* $E'$ for $x$ in $E$. 
 
 Suppose we have an expression $E_0$ that contains one or more occurences of $(\lambda x. E) E'$. Let $E_1$ be obtained from $E_0$ by replacing $(\lambda x. E) E'$ with $E/x \rightarrow E'$. Then we write $E_0 \rightarrow E_1$, and say that $E_0$ *contracts* to $E_1$. Using this notation, we can write the $\beta$-reduction rule:
+
 $$
 \frac{}{(\lambda x. E) E' \rightarrow (E/x \rightarrow E')}
 $$
@@ -125,11 +139,13 @@ This is a very intuitive rule - we can convert function applications by just *su
 
 The following rules also hold:
 Renaming:
+
 $$
 \frac{E_0 \rightarrow E_1 \qquad E_1 \equiv E_1'}{E_0 \rightarrow E_1'}
 $$
 
 Contextual Closure
+
 $$
 \frac{E_0 \rightarrow E_1}{E_0' \rightarrow E_1'}
 $$
@@ -138,6 +154,7 @@ where $E_1'$ is obtained from $E_0'$ by replacing one occurence of $E_0$ in $E_0
 If $E_1'$ is obtained from $E$ by zero or more contractions, then we say *$E$ reduces to $E'$* and write that as $E \rightarrow^* E'$. From this we can derive more rules:
 
 Transitive and Reflexive Closure
+
 $$
 \frac{E_0 \rightarrow E_1}{E_0' \rightarrow^* E_1'}
 $$
@@ -155,15 +172,19 @@ $$
 For an expression, we can continuously apply $\beta$-reduction (and $\alpha$-conversion if needed) until no redexes exist in the expression. Thus at a certain point we can no longer apply $\beta$-reduction, reaching a terminal state. This type of terminal expression is called a *normal form*, and say that "$E'$ is a normal form of $E$", if $E$ reduces to normal form $E'$.
 
 As an example, let's try reducing $(\lambda x. (\lambda y. y \ x)z)(z \ w)$:
+
 $$
 (\lambda x. (\lambda y. y \ x)z)(z \ w) \rightarrow
 (\lambda x. x \ z)(z \ w) \rightarrow z \ (z \ w)
 $$
+
 However, if we perform $(\lambda y. y \ x)z/x \rightarrow (z \ w)$ first, we get a different order of reduction:
+
 $$
 (\lambda x. (\lambda y. y \ x)z)(z \ w) \rightarrow
 (\lambda y. y \ (z \ w))z \rightarrow z \ (z \ w)
 $$
+
 but end up with the same normal form, $z \ (z \ w)$.
 
 This is the *Church-Rosser Theorem*, which states that the order of reduction does not matter. More formally, if $a \rightarrow^* b$ and $a \rightarrow^* c$, then there exists some $d$ such that $b \rightarrow^* d$ and $c \rightarrow^* d$.
@@ -184,6 +205,7 @@ The key idea is to represent natural numbers, and their succesive numbers as a s
 <span class='centerImg'>![[church_numerals_composition.svg]]</span>
 
 For any $n \in \mathbb{N}$, define $f^n(x)$ as the following:
+
 $$
 \begin{aligned}
 f^0(x) &= x \\
@@ -193,7 +215,9 @@ f^2(x) &= f(f(x)) \\
 f^n(x) &= f(f^{n - 1}(x))
 \end{aligned}
 $$
+
 Then, for any $n \in \mathbb{N}$, the $n$th Church Numeral $c_n$ is the $\lambda$-term
+
 $$
 \begin{aligned}
 c_0 &= \lambda f.\lambda x. \ x \\
