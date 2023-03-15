@@ -17,7 +17,8 @@ Education
 Stuff I Did
 ----------
 * **Winter Research Program in collaboration with Columbia University** 2022 Jan.-2022-March
-  Worked on developing algorithms that can explore a network of models written in Modular Stan. Wrote Haskell code to extend the modular stan library and presented our results to a research seminar. [slides](https://docs.google.com/presentation/d/1bMklK6OOARYEEfbHfH9MbOip8qJHcM6de22lvodDFDQ/edit?usp=sharing)
+ 
+ Worked on developing algorithms that can explore a network of models written in Modular Stan. Wrote Haskell code to extend the modular stan library and presented our results to a research seminar. [slides](https://docs.google.com/presentation/d/1bMklK6OOARYEEfbHfH9MbOip8qJHcM6de22lvodDFDQ/edit?usp=sharing)
 
 * **Summer Research Program in collaboration with UCI** - Student Research Intern, 2021 June.-2021 August.
   

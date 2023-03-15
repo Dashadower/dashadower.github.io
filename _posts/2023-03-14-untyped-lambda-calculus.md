@@ -4,8 +4,6 @@ title: Untyped $\lambda$-Calculus
 usemathjax: true
 ---
 
-# Untyped(vanilla) $\lambda$-calculus
-
 In simple terms, $\lambda$-calculus is a way to specify *function applications* without actually defining their names. Normally in programming, we can define a function like so:
 ```
 let f(x) = x * x + 1 in B
