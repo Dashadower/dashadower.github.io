@@ -99,7 +99,7 @@ Qed.
 ```
 
 ## Bool
-
+Lemmas marked with * are not in `Coq.Bool.Bool`
 ### `eqb_subst`
 ```
 forall (P:bool -> Prop) (b1 b2:bool), eqb b1 b2 = true -> P b1 -> P b2.
