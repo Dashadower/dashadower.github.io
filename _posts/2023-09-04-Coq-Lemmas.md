@@ -5,7 +5,7 @@ usemathjax: true
 ---
 
 ## Nat
-
+Lemmas marked with '*' are not in `Coq.Init.Peano`.
 ### `plus_n_0`
 ```
 forall n:nat, n = n + 0.
@@ -36,7 +36,7 @@ forall n:nat, 0 = n * 0.
 forall n m:nat, n * m + n = n * S m.
 ```
 
-### `add_comm`
+### `add_comm`*
 ```
 Theorem add_comm : forall n m : nat,
   n + m = m + n.
@@ -50,7 +50,7 @@ Proof.
 Qed.
 ```
 
-### `add_assoc`
+### `add_assoc`*
 ```
 Theorem add_assoc : forall n m p : nat,
   n + (m + p) = (n + m) + p.
@@ -59,6 +59,42 @@ Proof.
   induction n as [| n' IHn'].
     - simpl. reflexivity.
     - simpl. rewrite -> IHn'. reflexivity.
+Qed.
+```
+
+### `mult_comm`*
+```
+Theorem mult_comm : forall m n : nat,
+  m * n = n * m.
+Proof.
+  intros n m.
+  induction n as [| n' IHn'].
+    - simpl. rewrite -> mul_0_r. reflexivity.
+    - simpl.
+      rewrite -> IHn'.
+      rewrite <- mult_n_Sm.
+      rewrite -> add_comm.
+      reflexivity.
+Qed.
+```
+
+### `mult_assoc`*
+```
+Theorem mult_assoc : forall n m p : nat,
+  n * (m * p) = (n * m) * p.
+Proof.
+  intros n m p.
+  rewrite -> mult_comm.
+  induction p as [| p' IHp'].
+    - rewrite -> mul_0_r. rewrite -> mult_0_l.
+      rewrite -> mult_comm. rewrite -> mult_0_l. reflexivity.
+    - rewrite <- mult_n_Sm. rewrite <- mult_n_Sm. rewrite -> mult_plus_distr_r.
+      rewrite -> IHp'.
+      assert (m * n = n * m). {
+        rewrite -> mult_comm. reflexivity.
+      }
+      rewrite -> H.
+      reflexivity.
 Qed.
 ```
 
