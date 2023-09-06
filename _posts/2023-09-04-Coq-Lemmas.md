@@ -4,8 +4,6 @@ title: Coq Lemmas
 usemathjax: true
 ---
 
-# Basic Coq Lemmas
-
 ## Nat
 
 ### `plus_n_0`
@@ -64,3 +62,61 @@ Proof.
 Qed.
 ```
 
+## Bool
+
+### `eqb_subst`
+```
+forall (P:bool -> Prop) (b1 b2:bool), eqb b1 b2 = true -> P b1 -> P b2.
+```
+
+### `eqb_reflx`
+```
+forall b:bool, eqb b b = true.
+```
+
+### `eqb_prop`
+```
+forall a b:bool, eqb a b = true -> a = b.
+```
+
+### `eqb_true_iff`
+```
+forall a b:bool, eqb a b = true <-> a = b.
+```
+
+### `eqb_false_iff`
+```
+forall a b:bool, eqb a b = false <-> a <> b.
+```
+
+### `negb_orb`
+De Morgan
+```
+forall b1 b2:bool, negb (b1 || b2) = negb b1 && negb b2.
+```
+
+### `negb_andb`
+De Morgan
+```
+forall b1 b2:bool, negb (b1 && b2) = negb b1 || negb b2.
+```
+
+### `orb_comm`
+```
+forall b1 b2:bool, b1 || b2 = b2 || b1.
+```
+
+### `orb_assoc`
+```
+forall b1 b2 b3:bool, b1 || (b2 || b3) = b1 || b2 || b3.
+```
+
+### `andb_comm`
+```
+forall b1 b2:bool, b1 && b2 = b2 && b1.
+```
+
+### `andb_assoc`
+```
+forall b1 b2 b3:bool, b1 && (b2 && b3) = b1 && b2 && b3.
+```
