@@ -129,6 +129,19 @@ Proof.
 Qed.
 ```
 
+### `leb_n_Sn`*
+```
+Theorem leb_n_Sn : forall n,
+  n <=? (S n) = true.
+Proof.
+  intros n. induction n as [| n' IHn'].
+  - (* 0 *)
+    simpl.  reflexivity.
+  - (* S n' *)
+    simpl.  rewrite IHn'.  reflexivity.
+Qed.
+```
+
 ## Bool
 Lemmas marked with * are not in `Coq.Bool.Bool`
 ### `eqb_subst`
