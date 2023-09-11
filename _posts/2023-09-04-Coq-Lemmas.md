@@ -4,6 +4,28 @@ title: Coq Lemmas
 usemathjax: true
 ---
 
+## Using Coq's `Search`
+
+(from Software Foundations)
+
+> Coq's [Search] command is quite helpful with this.  Let's say you've forgotten the name of a theorem about [rev].  The command [Search rev] will cause Coq to display a list of all theorems involving [rev].
+
+> ```Search rev.```
+
+> Or say you've forgotten the name of the theorem showing that plus is commutative.  You can use a pattern to search for all theorems involving the equality of two additions.
+
+> ```Search (_ + _ = _ + _).```
+
+> You'll see a lot of results there, nearly all of them from the standard library.  To restrict the results, you can search inside a particular module:
+
+> ```Search (_ + _ = _ + _) inside Induction.```
+
+> You can also make the search more precise by using variables in the search pattern instead of wildcards:
+
+> ```Search (?x + ?y = ?y + ?x).```
+
+> The question mark in front of the variable is needed to indicate that it is a variable in the search pattern, rather than a variable that is expected to be in scope currently.
+
 ## Nat
 Lemmas marked with '*' are not in `Coq.Init.Peano`.
 ### `plus_n_0`
@@ -34,6 +56,15 @@ forall n:nat, 0 = n * 0.
 ### `mult_n_Sm`
 ```
 forall n m:nat, n * m + n = n * S m.
+```
+
+### `succ_eql_add1`*
+```
+Theorem succ_eql_add1 : forall n : nat,
+  1 + n = S n.
+Proof.
+  reflexivity.
+Qed.
 ```
 
 ### `add_comm`*
