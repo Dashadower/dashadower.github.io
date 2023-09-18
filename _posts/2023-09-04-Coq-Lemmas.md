@@ -204,3 +204,8 @@ forall b1 b2:bool, b1 && b2 = b2 && b1.
 ```
 forall b1 b2 b3:bool, b1 && (b2 && b3) = b1 && b2 && b3.
 ```
+
+### `f_equal`
+```
+forall (A B : Type) (f : A -> B) (x y : A), x = y -> f x = f y.
+```
