@@ -1,3 +1,9 @@
+---
+layout: post
+title: Coq Tactics
+usemathjax: true
+---
+
 - `intros`: move hypotheses/variables from goal to context
 
 - `reflexivity`: finish the proof (when the goal looks like `e = e`) (반사성)
