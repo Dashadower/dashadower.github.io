@@ -44,7 +44,7 @@ forall n:nat, 0 + n = n.
 
 ### `plus_n_Sm`
 ```
-forall n m:nat, S (n + m) = n + S m.
+forall n m:nat, S (n + m) = S n + S m.
 ```
 
 ### `plus_sn_m`
