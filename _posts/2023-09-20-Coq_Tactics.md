@@ -52,7 +52,7 @@ defined types
 between values of inductively defined types. (일대일 관계인 constructor 의 성질 추론 e.g `S n = S m -> n = m` )
 
 - `discriminate`: reason by disjointness of constructors on
-equalities between values of inductively defined types. (proof by premise being a contradiction)
+equalities between values of inductively defined types. (proof by different contructors always being not equal)
 
 - `assert (H: e)` (or `assert (e) as H`): introduce a "local
 lemma" `e` and call it `H` (보조정리 도입)
