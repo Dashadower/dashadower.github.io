@@ -4,7 +4,9 @@ title: Coq Lemmas
 usemathjax: true
 ---
 
-## Using Coq's `Search`
+## Useful Coq Commands
+
+### `Search`
 
 (from Software Foundations)
 
@@ -29,6 +31,38 @@ usemathjax: true
 Search only lemmas(works for `Theorem`, `Example`, `Definition`, etc.):
 
 ```Search is:Lemma (_ + _ = _ + _)```
+
+### `Check x`
+
+Displays the type of term. When called in proof mode, the term is checked in the local context of the selected goal (possibly by using single numbered goal selectors).
+
+Use `@def` to force implicit arguments of `def` be passed explicitly. For example, 
+
+```
+Definition injective {A B} (f : A -> B) :=
+  forall x y : A, f x = f y → x = y.
+```
+
+Note that the braces `{}` indicate that the types of the function, `A, B` should be inferred. `Check`ing without @ yields:
+
+```
+> Check injective.
+injective
+: (?A -> ?B) -> Prop
+where
+?A : [ |- Type]
+?B : [ |- Type]
+```
+The first argument automatically expects some function with type `A -> B` with both being inferred.
+
+Let's now check `@injective` with applying `A = nat` :
+
+```
+Check @injective nat.
+@injective nat
+: forall B : Type, (nat -> B) -> Prop
+```
+Now it expects some type `B` and a function with type `nat -> B`. 
 
 ## Nat
 Lemmas marked with '*' are not in `Coq.Init.Peano`.
