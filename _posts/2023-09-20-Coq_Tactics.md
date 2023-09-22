@@ -41,7 +41,9 @@ the goal. Frequently `x` is a function. (함수 전개)
 - `unfold x in H`: ... or within a hypothesis `H`
 
 - `destruct x as ...`: case analysis on values of inductively
-defined type `x`. e.g) `p = X * Y; destruct p as (x, y)`
+defined type `x`. 
+
+e.g) `p = X * Y; destruct p as (x, y)`
 
 - `destruct x eqn:E`: specify the name of an equation(`E`) to be
 added to the context, recording the result of the case
@@ -51,7 +53,12 @@ analysis
 defined types
 
 - `injection x as ...`: reason by injectivity on equalities
-between values of inductively defined types. (일대일 관계인 constructor 의 성질 추론 e.g `H: (n, m) = (x, y); injection H as H1 H2.` yields `H1: n = m, H2: x = y`)
+between values of inductively defined types. (일대일 관계인 constructor 의 성질 추론)
+
+ e.g 
+ ```H: (n, m) = (x, y); injection H as H1 H2.``` 
+ yields 
+ ```H1: n = m, H2: x = y```
 
 - `discriminate x`: reason by disjointness of constructors on
 equalities between values of inductively defined types within hypothesis `x`(or goal if omitted). (proof by different contructors always being not equal)
@@ -64,3 +71,5 @@ else that depends on it) from the context back to an explicit
 hypothesis in the goal formula. (reverses `intros` and converts to universal quantification)
 
 - `f_equal`: change a goal of the form `f x = f y` into `x = y`
+
+- `split`: Split the clauses of logical AND (`A /\ B`), into subgoals `A` and `B`.
