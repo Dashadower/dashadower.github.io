@@ -6,6 +6,12 @@ usemathjax: true
 
 - `intros`: move hypotheses/variables from goal to context
 
+    To introduce a conjunctive hypothesis `A /\ B` into `H1: A; H2: B`, use `intros [H1 H2]`.
+
+    To introduce a disjunctive hypothesis `A \/ B` into `H1: A; H2: B`, use `intros [H1 | H2]`.
+
+    Patterns can be nested: `[[Ha|Hb] H]` can be used to split `(A \/ B) /\ C`.
+
 - `reflexivity`: finish the proof (when the goal looks like `e = e`) (반사성)
 
 - `apply L`: prove goal using a hypothesis, lemma, or constructor `L`. `L` must be immediately match-able within the goal.
@@ -43,11 +49,35 @@ the goal. Frequently `x` is a function. (함수 전개)
 - `destruct x as ...`: case analysis on values of inductively
 defined type `x`. 
 
-e.g) `p = X * Y; destruct p as (x, y)`
+    e.g) `p = X * Y; destruct p as (x, y)`
 
 - `destruct x eqn:E`: specify the name of an equation(`E`) to be
 added to the context, recording the result of the case
 analysis
+
+    Another way to use destruct is to "split" a hypothesis with a logical AND into two hypotheses. e.g.)
+
+    ```
+    n, m : nat
+    H : n = 0 /\ m = 0
+    ```
+
+    Using `destruct H as [Hn Hm]` yields:
+    ```
+    > destruct H as [Hn Hm].
+    Hn : n = 0
+    Hm : m = 0
+    ```
+
+    Destructing a cunjunctive hypothesis is common that if you have a hypothesis `H` with a conjunctive form, you can compresses `intros H; destruct H as [Hn Hm]` into `intros [Hn Hm]` (when it's the hypothesis's turn to be introduced). Brackets can  be nested for multiple conjunctive statements.
+
+    If you dont need a portion, simply use `_` to throw it away:
+
+    ```
+    destruct H as [Hn _].  (* Onky keeps Hn *)
+    ```
+
+    The same works for disjunctive hypotheses.
 
 - `induction x as ...`: induction on values of inductively
 defined types
@@ -55,10 +85,10 @@ defined types
 - `injection x as ...`: reason by injectivity on equalities
 between values of inductively defined types. (일대일 관계인 constructor 의 성질 추론)
 
- e.g 
- ```H: (n, m) = (x, y); injection H as H1 H2.``` 
- yields 
- ```H1: n = m, H2: x = y```
+     e.g 
+     ```H: (n, m) = (x, y); injection H as H1 H2.``` 
+     yields 
+     ```H1: n = m, H2: x = y```
 
 - `discriminate x`: reason by disjointness of constructors on
 equalities between values of inductively defined types within hypothesis `x`(or goal if omitted). (proof by different contructors always being not equal)
@@ -72,4 +102,6 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 
 - `f_equal`: change a goal of the form `f x = f y` into `x = y`
 
-- `split`: Split the clauses of logical AND (`A /\ B`), into subgoals `A` and `B`.
+- `split`: Split the clauses of conjunction(logical AND) `A /\ B`, into subgoals `A` and `B`.
+
+- `left/right`: Prove disjunction(logical OR) `A \/ B` with either left clause `A` or right clause `B`.
