@@ -99,6 +99,10 @@ analysis. `x` can be an inductively defined type or an equation that yields an i
     , using `destruct H as [x' H']` introduces a variable `x'` which satisfies the quantifier and hypothesis `H': S n = S n' + x'`
     which is true for `x'`.
 
+- `destruct H` (On hypotheses that are `False`):
+
+    Ex falso quodlibet. If a hypothesis is a `False`, complete the proof.
+
 - `induction x as ...`: induction on values of inductively
 defined types
 
