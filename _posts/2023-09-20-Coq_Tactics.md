@@ -53,7 +53,15 @@ defined type `x`.
 
 - `destruct x eqn:E`: specify the name of an equation(`E`) to be
 added to the context, recording the result of the case
-analysis
+analysis. `x` can be an inductively defined type or an equation that yields an inductively defined type.
+
+    ```
+    destruct n eqn:Eqn.    (* n is type nat *)
+        - (* case 1: n = 0 *)
+        - (* case 2: n = S n' for some nat n' *)
+    ```
+
+- `destruct H as [Hn Hm]` (On hypotheses with logical conjunction/disjunction):
 
     Another way to use destruct is to "split" a hypothesis with a logical AND into two hypotheses. e.g.)
 
@@ -67,6 +75,7 @@ analysis
     > destruct H as [Hn Hm].
     Hn : n = 0
     Hm : m = 0
+    ---------------
     ```
 
     Destructing a cunjunctive hypothesis is common that if you have a hypothesis `H` with a conjunctive form, you can compresses `intros H; destruct H as [Hn Hm]` into `intros [Hn Hm]` (when it's the hypothesis's turn to be introduced). Brackets can  be nested for multiple conjunctive statements.
@@ -79,10 +88,21 @@ analysis
 
     The same works for disjunctive hypotheses.
 
+- `destruct H as [x' H']` (On hypotheses with existential quantifiers):
+
+    If there's a hypothesis `H` such that it containt an existential quantifier, e.g)
+
+    ```
+    H : exists x : nat, S n = S n' + x
+    ```
+
+    , using `destruct H as [x' H']` introduces a variable `x'` which satisfies the quantifier and hypothesis `H': S n = S n' + x'`
+    which is true for `x'`.
+
 - `induction x as ...`: induction on values of inductively
 defined types
 
-- `injection x as ...`: reason by injectivity on equalities
+- `injection x as ... (in H)`: reason by injectivity on equalities
 between values of inductively defined types. (일대일 관계인 constructor 의 성질 추론)
 
      e.g 
@@ -90,8 +110,8 @@ between values of inductively defined types. (일대일 관계인 constructor �
      yields 
      ```H1: n = m, H2: x = y```
 
-- `discriminate x`: reason by disjointness of constructors on
-equalities between values of inductively defined types within hypothesis `x`(or goal if omitted). (proof by different contructors always being not equal)
+- `discriminate H`: reason by disjointness of constructors on
+equalities between values of inductively defined types within hypothesis `H`(or goal if omitted). (proof by different contructors always being not equal)
 
 - `assert (H: e)` (or `assert (e) as H`): introduce a "local
 lemma" `e` and call it `H` (보조정리 도입)
@@ -105,3 +125,7 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 - `split`: Split the clauses of conjunction(logical AND) `A /\ B`, into subgoals `A` and `B`.
 
 - `left/right`: Prove disjunction(logical OR) `A \/ B` with either left clause `A` or right clause `B`.
+
+- `exists x`: Given an existential quantifier, substitute in `x` in place of the quantified variable and make it the goal.
+
+    Existential quantifiers are proved by giving a concrete "example" value for the quantified variable such that goal holds. `exists x` sets `x` as the value in which the goal must be shown to hold.
