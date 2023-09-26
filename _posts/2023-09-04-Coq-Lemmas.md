@@ -64,6 +64,17 @@ Check @injective nat.
 ```
 Now it expects some type `B` and a function with type `nat -> B`. 
 
+### `Locate "x"`
+
+Search the definition of a notation. For example,
+
+```
+> Locate "=?"
+
+Notation "x =? y" := (eqb x y) : nat_scope (default interpretation)
+Notation "x =? y" := (String.eqb x y) : string_scope 
+```
+
 ## Nat
 Lemmas marked with '*' are not in `Coq.Init.Peano`.
 ### `plus_n_0`
