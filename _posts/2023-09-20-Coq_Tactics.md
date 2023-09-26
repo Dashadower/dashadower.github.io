@@ -86,7 +86,7 @@ analysis. `x` can be an inductively defined type or an equation that yields an i
     destruct H as [Hn _].  (* Onky keeps Hn *)
     ```
 
-    The same works for disjunctive hypotheses.
+    The same works for disjunctive hypotheses. However, it creates two subgoals, one with left being true and another with right being true.
 
 - `destruct H as [x' H']` (On hypotheses with existential quantifiers):
 
@@ -133,3 +133,5 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 - `exists x`: Given an existential quantifier, substitute in `x` in place of the quantified variable and make it the goal.
 
     Existential quantifiers are proved by giving a concrete "example" value for the quantified variable such that goal holds. `exists x` sets `x` as the value in which the goal must be shown to hold.
+
+- `replace (x) with (y)` : replaces expr `x` with expr `y`.     Immediately creates goal `x = y`.
