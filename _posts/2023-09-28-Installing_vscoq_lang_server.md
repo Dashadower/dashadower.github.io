@@ -85,6 +85,10 @@ usemathjax: true
 
 3. Open VSCode preferences, search for vscoq, and fill in `path to vscoqtop`
 
+### **Make sure any terminal you're invoking coq binaries with are synced with the switch that vscoq was installed with. **
+
+Run `$opam switch` to double-check the coqc you're about to use is the same version with vscoq's. If it gives you a warning, you need to run `$eval $(opam env)`.
+
 ### When vscoq bugs out
 
 1. Open command pallete with F1.
