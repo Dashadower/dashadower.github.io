@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Installing VsCoq2 Language Server
+title: Installing the VsCoq2 Language Server
 usemathjax: true
 ---
 
