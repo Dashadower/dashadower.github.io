@@ -8,7 +8,7 @@ usemathjax: true
 
 - Install OCaml
 
-## Create an Opam switch for Coq
+## Create an opam switch for Coq
 
 1. Check version of installed OCaml:
 
@@ -25,7 +25,7 @@ usemathjax: true
 
     Note that the switch name `with-coq` and the succeeding OCaml version may change.
 
-3. Restart shell or run `eval $(opam env)`
+3. Restart shell or run `$ eval $(opam env)`
 
 4. (Optional). Update opam repo and identify version of Coq available in the repo.
     ```
@@ -66,7 +66,7 @@ usemathjax: true
 2. Pin from directory:
 
     ```
-    $ opam pin add language-server/
+    $ opam pin add vscoq/language-server/
     ```
 
 ### Identify the vscoqtop path
@@ -87,7 +87,7 @@ usemathjax: true
 
 ### **Make sure any terminal you're invoking coq binaries with are synced with the switch that vscoq was installed with. **
 
-Run `$opam switch` to double-check the coqc you're about to use is the same version with vscoq's. If it gives you a warning, you need to run `$eval $(opam env)`.
+Run `$opam switch` to double-check the coqc you're about to use is the same version with vscoq's. If it gives you a warning, you need to run `$ eval $(opam env)`.
 
 ### When vscoq bugs out
 
