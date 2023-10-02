@@ -16,10 +16,26 @@ usemathjax: true
 
 - `apply L`: prove goal using a hypothesis, lemma, or constructor `L`. `L` must be immediately match-able within the goal.
 
+    ```
+    L     L -> goal
+    ---------------
+         goal
+    ```
+
+    In other words, if we know `L -> goal` and we are trying to prove `goal`, it suffices to prove `L`.
+
 - `apply L in H`: apply a hypothesis, lemma, or constructor `L` to
 a hypothesis `H` in the context (forward reasoning)
 
-- `apply L with [a := b]`: explicitly specify values for variables
+    ```
+    H      H -> H'
+    -------------
+        H'
+    ```
+
+    In other words, if we have hypothesis `H` and an implication `H -> H'`, `H'` is true in the context.
+
+- `apply L with (a := b)`: explicitly specify values for variables
 that cannot be determined by pattern matching. Attempts application of `L` with occurences of `a` in `L` replaced with `b`. (variable renaming/ quantifier matching)
 
 - `simpl`: simplify computations in the goal
