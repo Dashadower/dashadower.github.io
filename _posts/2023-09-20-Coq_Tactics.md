@@ -14,12 +14,13 @@ usemathjax: true
 
 - `reflexivity`: finish the proof (when the goal looks like `e = e`) (반사성)
 
-- `apply L`: prove goal using a hypothesis, lemma, or constructor `L`. `L` must be immediately match-able within the goal.
+- `apply L`: prove goal using a hypothesis, lemma, or constructor `L`. `L` must be immediately match-able within the goal. (backward reasoning)
 
+    If we assume the goal is true,
     ```
-    L     L -> goal
-    ---------------
-         goal
+    goal     L -> goal
+    ------------------
+           L
     ```
 
     In other words, if we know `L -> goal` and we are trying to prove `goal`, it suffices to prove `L`.
