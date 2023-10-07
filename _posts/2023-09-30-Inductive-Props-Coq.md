@@ -44,7 +44,8 @@ be able to construct the set of all even natural numbers.
 To prove that some number `n'` is even, we must show that `n'` is constructible from the above two cases. Informally that means showing the following implication holds:
 
 $$
-\forall n: \mathsf{nat}, \ \mathsf{ev} \ n \rightarrow n = 0 \ \vee \mathsf{ev} \ n' \quad \text{where} \ n = \ S \ (S\  n')
+\forall n: \mathsf{nat}, \ \mathsf{ev} \ n \rightarrow n = 0 \ \vee \mathsf{ev} \ n' \ \wedge \exists n'. 
+  \ n = \ S \ (S\  n')
 $$
 
 An inductive proposition defines a way to construct *propositions* inductively: either standalone propositions or a mapping that creates another proposition given a proposition. The even example can be expressed in Coq as the following:
@@ -73,7 +74,7 @@ Coq converts the type `nat -> Prop`, where `nat = n, Prop =  ev n -> ev (S (S n)
 
 1. $\forall n: \mathsf{nat}$ becomes a function argument that admints some `nat` as `n`.
 2. For the implication $\mathsf{ev} \ n \rightarrow \mathsf{ev} \ S \ (S \ n)$,
-    1. The antecedent $\mathsf{ev} \ n$ is creates from a function `nat -> Prop` which takes `n` from #1 and returns `ev n`.
+    1. The antecedent $\mathsf{ev} \ n$ is created from a function `nat -> Prop` which takes `n` from #1 and returns `ev n`.
     2. The implication is true if a function with type `Prop -> Prop`, which accepts `ev n` from 2-1, returns a type corresponding to the consequent $\mathsf{ev} \ S \ (S \ n)$, `ev S (S n)`.
 
 Note that this implies `ev_SS` having type `nat -> Prop -> Prop`, which is exactly what we defined!
