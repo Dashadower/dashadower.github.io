@@ -43,6 +43,8 @@ that cannot be determined by pattern matching. Attempts application of `L` with 
 
 - `simpl in H`: ... or within a hypothesis `H`
 
+- `simpl in *`: ... or on all contexts and goals. This notation is also possible with other tactics that admit `in`.
+
 - `rewrite L`: use an equality hypothesis (or lemma) `L` to rewrite
 the goal. use
 
@@ -189,3 +191,5 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
         `inversion` throws these away.
      > - The ones that are left represent the cases that must be 
         proved to establish the original goal.  For those, `inversion` adds to the proof context all equations that must hold of the arguments given to `P` -- e.g., `n' = n` in the proof of `evSS_ev`).
+
+- `remember e as x`: Replace all occurrences of the expression `e` with the variable `x`, and adds `x = e` to the context.
