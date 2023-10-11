@@ -118,4 +118,4 @@ If applying to a hypothesis in the context, it becomes forward reasoning, which 
 
 1. `inversion E` - Straightforward. Reason about the evidence cases of the proposition.
 
-2. `induction E` - Induction on evidence. Useful since the induction hypothesis includes the variables involved in the evidence. It normally helps to keep the induction hypothesis as general as possible.
+2. `induction E` - Induction on evidence. Useful since the induction hypothesis includes the variables involved in the evidence. You would use induction instead of inversion when there's an inductively defined prop that's recursive, which creates an infinite chain of props. Then having an induction hypothesis helps to reduce the chain. It normally helps to keep the induction hypothesis as general as possible.
