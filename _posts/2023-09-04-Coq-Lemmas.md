@@ -38,14 +38,14 @@ Displays the type of term. When called in proof mode, the term is checked in the
 
 Use `@def` to force implicit arguments of `def` be passed explicitly. For example, 
 
-```
+```coq
 Definition injective {A B} (f : A -> B) :=
   forall x y : A, f x = f y → x = y.
 ```
 
 Note that the braces `{}` indicate that the types of the function, `A, B` should be inferred. `Check`ing without @ yields:
 
-```
+```coq
 > Check injective.
 injective
 : (?A -> ?B) -> Prop
@@ -57,7 +57,7 @@ The first argument automatically expects some function with type `A -> B` with b
 
 Let's now check `@injective` with applying `A = nat` :
 
-```
+```coq
 Check @injective nat.
 @injective nat
 : forall B : Type, (nat -> B) -> Prop
@@ -68,7 +68,7 @@ Now it expects some type `B` and a function with type `nat -> B`.
 
 Search the definition of a notation. For example,
 
-```
+```coq
 > Locate "=?"
 
 Notation "x =? y" := (eqb x y) : nat_scope (default interpretation)
@@ -78,37 +78,37 @@ Notation "x =? y" := (String.eqb x y) : string_scope
 ## Nat
 Lemmas marked with '*' are not in `Coq.Init.Peano`.
 ### `plus_n_0`
-```
+```coq
 forall n:nat, n = n + 0.
 ```
 
 ### `plus_0_n`
-```
+```coq
 forall n:nat, 0 + n = n.
 ```
 
 ### `plus_n_Sm`
-```
+```coq
 forall n m:nat, S (n + m) = S n + S m.
 ```
 
 ### `plus_sn_m`
-```
+```coq
 forall n m:nat, S n + m = S (n + m).
 ```
 
 ### `mult_n_0`
-```
+```coq
 forall n:nat, 0 = n * 0.
 ```
 
 ### `mult_n_Sm`
-```
+```coq
 forall n m:nat, n * m + n = n * S m.
 ```
 
 ### `succ_eql_add1`*
-```
+```coq
 Theorem succ_eql_add1 : forall n : nat,
   1 + n = S n.
 Proof.
@@ -117,7 +117,7 @@ Qed.
 ```
 
 ### `add_comm`*
-```
+```coq
 Theorem add_comm : forall n m : nat,
   n + m = m + n.
 Proof.
@@ -131,7 +131,7 @@ Qed.
 ```
 
 ### `add_assoc`*
-```
+```coq
 Theorem add_assoc : forall n m p : nat,
   n + (m + p) = (n + m) + p.
 Proof.
@@ -143,7 +143,7 @@ Qed.
 ```
 
 ### `mult_comm`*
-```
+```coq
 Theorem mult_comm : forall m n : nat,
   m * n = n * m.
 Proof.
@@ -159,7 +159,7 @@ Qed.
 ```
 
 ### `mult_assoc`*
-```
+```coq
 Theorem mult_assoc : forall n m p : nat,
   n * (m * p) = (n * m) * p.
 Proof.
@@ -179,7 +179,7 @@ Qed.
 ```
 
 ### `leb_n_Sn`*
-```
+```coq
 Theorem leb_n_Sn : forall n,
   n <=? (S n) = true.
 Proof.
@@ -194,63 +194,63 @@ Qed.
 ## Bool
 Lemmas marked with * are not in `Coq.Bool.Bool`
 ### `eqb_subst`
-```
+```coq
 forall (P:bool -> Prop) (b1 b2:bool), eqb b1 b2 = true -> P b1 -> P b2.
 ```
 
 ### `eqb_reflx`
-```
+```coq
 forall b:bool, eqb b b = true.
 ```
 
 ### `eqb_prop`
-```
+```coq
 forall a b:bool, eqb a b = true -> a = b.
 ```
 
 ### `eqb_true_iff`
-```
+```coq
 forall a b:bool, eqb a b = true <-> a = b.
 ```
 
 ### `eqb_false_iff`
-```
+```coq
 forall a b:bool, eqb a b = false <-> a <> b.
 ```
 
 ### `negb_orb`
 De Morgan
-```
+```coq
 forall b1 b2:bool, negb (b1 || b2) = negb b1 && negb b2.
 ```
 
 ### `negb_andb`
 De Morgan
-```
+```coq
 forall b1 b2:bool, negb (b1 && b2) = negb b1 || negb b2.
 ```
 
 ### `orb_comm`
-```
+```coq
 forall b1 b2:bool, b1 || b2 = b2 || b1.
 ```
 
 ### `orb_assoc`
-```
+```coq
 forall b1 b2 b3:bool, b1 || (b2 || b3) = b1 || b2 || b3.
 ```
 
 ### `andb_comm`
-```
+```coq
 forall b1 b2:bool, b1 && b2 = b2 && b1.
 ```
 
 ### `andb_assoc`
-```
+```coq
 forall b1 b2 b3:bool, b1 && (b2 && b3) = b1 && b2 && b3.
 ```
 
 ### `f_equal`
-```
+```coq
 forall (A B : Type) (f : A -> B) (x y : A), x = y -> f x = f y.
 ```

@@ -105,12 +105,12 @@ E \equiv E'
 $$
 
 This is simply because all we have done were renaming bound variables to some other variable, that's not being used with the expression. In code form, we can see that
-```
+```python
 def my_function(a, b):
 	return a + b + c  # c is some other variable
 ```
 and
-```
+```python
 def my_function(renamed_a, renamed_b):
 	return renamed_a + renamed_b + c  # c is some other variable
 ```

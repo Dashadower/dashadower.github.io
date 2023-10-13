@@ -74,7 +74,7 @@ defined type `x`.
 added to the context, recording the result of the case
 analysis. `x` can be an inductively defined type or an equation that yields an inductively defined type.
 
-    ```
+    ```coq
     destruct n eqn:Eqn.    (* n is type nat *)
         - (* case 1: n = 0 *)
         - (* case 2: n = S n' for some nat n' *)
@@ -84,13 +84,13 @@ analysis. `x` can be an inductively defined type or an equation that yields an i
 
     Another way to use destruct is to "split" a hypothesis with a logical AND into two hypotheses. e.g.)
 
-    ```
+    ```coq
     n, m : nat
     H : n = 0 /\ m = 0
     ```
 
     Using `destruct H as [Hn Hm]` yields:
-    ```
+    ```coq
     > destruct H as [Hn Hm].
     Hn : n = 0
     Hm : m = 0
@@ -101,7 +101,7 @@ analysis. `x` can be an inductively defined type or an equation that yields an i
 
     If you dont need a portion, simply use `_` to throw it away:
 
-    ```
+    ```coq
     destruct H as [Hn _].  (* Onky keeps Hn *)
     ```
 
@@ -111,7 +111,7 @@ analysis. `x` can be an inductively defined type or an equation that yields an i
 
     If there's a hypothesis `H` such that it containt an existential quantifier, e.g)
 
-    ```
+    ```coq
     H : exists x : nat, S n = S n' + x
     ```
 
@@ -159,7 +159,7 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 
     Example) Suppose we have `ev n` in the context where `ev` is an inductive proposition of a nat being even:
 
-    ```
+    ```coq
     Inductive ev : nat -> Prop :=
         | ev_0                       : ev 0
         | ev_SS (n : nat) (H : ev n) : ev (S (S n)).
@@ -167,7 +167,7 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 
     `ev n` implies `n` can be either 0 or `S S n'` for an even number `n'`. `inversion E as [| n' E' Heq]` then identifies for `n` to be even, `n = 0 \/ ev (S S n')` must hold. The evidence of `ev (S (S n'))` is:
 
-    ```
+    ```coq
     ev_SS n' E'
     ```
 
