@@ -10,7 +10,7 @@ Inductive propositions confused me so much I decided to make a note for it.
 
 Standard inductive types creates a base case and a mapping from an object to its "successor". For example the Peano natural numbers:
 
-```coq
+```
 Inductive nat: Type :=
     | O
     | S : nat -> nat.
@@ -50,7 +50,7 @@ $$
 
 An inductive proposition defines a way to construct *propositions* inductively: either standalone propositions or a mapping that creates another proposition given a proposition. The even example can be expressed in Coq as the following:
 
-```coq
+```
 Inductive ev : nat -> Prop :=
   | ev_0                       : ev 0
   | ev_SS (n : nat) (H : ev n) : ev (S (S n)).
@@ -64,7 +64,7 @@ Inductive ev : nat -> Prop :=
     which happens to be the case right of the logical or in the implication above.
 
 We can verify the conversion by running `Print ev.`, which yields the following output:
-```coq
+```
 Inductive ev : nat -> Prop := 
     ev_0 : ev 0 
     | ev_SS : forall n : nat, ev n -> ev (S (S n)).
