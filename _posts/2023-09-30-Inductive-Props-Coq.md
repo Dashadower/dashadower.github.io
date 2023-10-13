@@ -98,6 +98,7 @@ $$
 ----
 
 If it's in the goal, the problem switches to constructing evidence of the proposition. That means applying an approporiate inductive proposition "backwards", creating a *predecessive* proposition and showing it's true:
+
 $$
 \begin{array}{c}
   n: \mathsf{nat} \quad \mathsf{ev} \ S \ (S \ n) \quad \forall n': \mathsf{nat}. \ \mathsf{ev} \ n' \rightarrow \mathsf{ev} \ S \ (S\  n') \\
