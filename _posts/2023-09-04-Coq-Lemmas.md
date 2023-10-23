@@ -193,6 +193,231 @@ Proof.
 Qed.
 ```
 
+### `le_trans`*
+```coq
+Lemma le_trans : forall m n o, m <= n -> n <= o -> m <= o.
+Proof.
+  intros m n o.
+  intros H.
+  intros H1.
+  transitivity n.
+    - apply H.
+    - apply H1.
+Qed.
+```
+
+### `O_le_n`*
+```coq
+Theorem O_le_n : forall n,
+  0 <= n.
+Proof.
+  intros n.
+  induction n.
+    - apply le_n.
+    - apply le_S. apply IHn.
+Qed.
+```
+
+### `n_le_m__Sn_le_Sm`*
+```coq
+Theorem n_le_m__Sn_le_Sm : forall n m,
+  n <= m -> S n <= S m.
+Proof.
+  intros n m.
+  intros H.
+  induction H.
+    - apply le_n.
+    - apply le_S. apply IHle.
+Qed.
+```
+
+### `Sn_le_Sm__n_le_m`*
+```coq
+Theorem Sn_le_Sm__n_le_m : forall n m,
+  S n <= S m -> n <= m.
+Proof.
+  intros n m.
+  intros H.
+  inversion H.
+    - apply le_n.
+    - rewrite <- H1. apply le_S. apply le_n.
+Qed.
+```
+
+### `lt_ge_cases`*
+```coq
+Theorem lt_ge_cases : forall n m,
+  n < m \/ n >= m.
+Proof.
+  intros n m.
+  induction n.
+    - destruct m eqn:Eqm.
+      + right. apply le_n.
+      + left. unfold lt. apply n_le_m__Sn_le_Sm. apply O_le_n.
+    - unfold lt in IHn. destruct IHn. 
+      + unfold lt. destruct m.
+        * right. apply O_le_n.
+        * apply Sn_le_Sm__n_le_m in H. inversion H.
+          ** right. rewrite <- H0. apply le_n.
+          ** left. apply n_le_m__Sn_le_Sm. apply n_le_m__Sn_le_Sm. apply H0.
+      + inversion H.
+        * right. apply le_S. apply le_n.
+        * right. rewrite H1. rewrite <- H1. apply le_S. apply le_S. apply H0.
+Qed.
+```
+
+### `le_plus_l`*
+```coq
+Theorem le_plus_l : forall a b,
+  a <= a + b.
+Proof.
+  intros a.
+  induction a.
+    - simpl. intros b. apply O_le_n.
+    - intros b. simpl. apply n_le_m__Sn_le_Sm. apply IHa.
+Qed.
+```
+
+### `plus_le`*
+```coq
+Theorem plus_le : forall n1 n2 m,
+  n1 + n2 <= m ->
+  n1 <= m /\ n2 <= m.
+Proof.
+  intros n1 n2 m.
+  intros H.
+  inversion H.
+    - split.
+      + apply le_plus_l.
+      + rewrite add_comm. apply le_plus_l.
+    - split.
+      + induction n2.
+        * rewrite add_comm in H. simpl in H. rewrite <- H1 in H. apply H.
+        * rewrite add_comm in H. simpl in H. rewrite add_comm in H. apply le_S in H.
+          apply Sn_le_Sm__n_le_m in H. apply IHn2 in H. apply H.
+          (* Now prove second antecedent of IHn1*)
+          rewrite add_comm in H0. simpl in H0. rewrite add_comm in H0. apply le_S in H0.
+          apply Sn_le_Sm__n_le_m in H0. apply H0.
+      + induction n1.
+        * simpl in H. rewrite <- H1 in H. apply H.
+        * simpl in H. apply le_S in H. apply Sn_le_Sm__n_le_m in H. apply IHn1 in H.
+          apply H.
+          (* Now prove second antecedent of IHn1*)
+          simpl in H0. apply le_S in H0. apply Sn_le_Sm__n_le_m in H0. apply H0.
+Qed.
+```
+
+### `add_le_cases`*
+```coq
+Theorem add_le_cases : forall n m p q,
+  n + m <= p + q -> n <= p \/ m <= q.
+  (** Hint: May be easiest to prove by induction on [n]. *)
+Proof.
+  intros n m p q.
+  intros H.
+  generalize dependent m.
+  generalize dependent p.
+  generalize dependent q.
+  induction n as [| n' IHn'].
+    - intros q p m. simpl. intros H. left. apply O_le_n.
+    - intros q p m. intros H. destruct p.
+      + apply plus_le in H. destruct H. simpl in H0.
+        right. apply H0.
+      + simpl in H. apply Sn_le_Sm__n_le_m in H. apply IHn' in H. destruct H.
+        * left. apply n_le_m__Sn_le_Sm. apply H.
+        * right. apply H.
+Qed.
+```
+
+### `plus_le_compat_l`*
+```coq
+Theorem plus_le_compat_l : forall n m p,
+  n <= m ->
+  p + n <= p + m.
+Proof.
+  intros n.
+  induction n.
+    - intros m p. intros H. rewrite add_comm. simpl. apply le_plus_l.
+    - intros m p. intros H. inversion H.
+      + apply le_n.
+      + rewrite add_comm. rewrite add_comm with (m := S m0). simpl.
+        apply n_le_m__Sn_le_Sm. rewrite add_comm. rewrite add_comm with (n := m0).
+        apply IHn. apply le_S in H0. apply Sn_le_Sm__n_le_m in H0. apply H0.
+Qed.
+```
+
+### `plus_le_compat_r`*
+```coq
+Theorem plus_le_compat_r : forall n m p,
+  n <= m ->
+  n + p <= m + p.
+Proof.
+  intros n.
+  induction n.
+    - intros m p. intros H. simpl. rewrite add_comm. apply le_plus_l.
+    - intros m p. intros H. destruct m.
+      + inversion H.
+      + apply Sn_le_Sm__n_le_m in H. apply (IHn _ p) in H.
+        simpl. apply n_le_m__Sn_le_Sm. apply H.
+Qed.
+```
+
+### `le_plus_trans`*
+```coq
+Theorem le_plus_trans : forall n m p,
+  n <= m ->
+  n <= m + p.
+Proof.
+  intros n.
+  induction n.
+    - intros m p. intros H.
+      apply O_le_n.
+    - intros m p H. destruct m.
+      + inversion H.
+      + apply Sn_le_Sm__n_le_m in H. apply (IHn _ p) in H.
+        simpl. apply n_le_m__Sn_le_Sm. apply H.
+Qed.
+```
+
+### `n_lt_m__n_le_m`*
+```coq
+Theorem n_lt_m__n_le_m : forall n m,
+  n < m ->
+  n <= m.
+Proof.
+  intros n.
+  induction n.
+    - intros m H.
+      apply O_le_n.
+    - intros m H.
+      unfold lt in H. apply le_S in H. apply Sn_le_Sm__n_le_m in H.
+      apply H.
+Qed.
+```
+
+### `plus_lt`*
+```coq
+Theorem plus_lt : forall n1 n2 m,
+  n1 + n2 < m ->
+  n1 < m /\ n2 < m.
+Proof.
+  intros n1 n2.
+  induction n1.
+    - intros m.
+      simpl. intros H. destruct m.
+        + unfold lt in *. inversion H.
+        + split.
+          * unfold lt. apply n_le_m__Sn_le_Sm. apply O_le_n.
+          * apply H.
+    - intros m H. destruct m.
+      + inversion H.
+      + simpl in H. unfold lt in *. apply Sn_le_Sm__n_le_m in H. apply IHn1 in H.
+        destruct H. split.
+          * apply n_le_m__Sn_le_Sm. apply H.
+          * apply le_S in H0. apply H0.
+Qed.
+```
+
 ## Bool
 Lemmas marked with * are not in `Coq.Bool.Bool`
 ### `eqb_subst`
