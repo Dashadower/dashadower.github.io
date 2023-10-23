@@ -10,27 +10,29 @@ usemathjax: true
 
 (from Software Foundations)
 
-> Coq's [Search] command is quite helpful with this.  Let's say you've forgotten the name of a theorem about [rev].  The command [Search rev] will cause Coq to display a list of all theorems involving [rev].
-
-> ```Search rev.```
-
-> Or say you've forgotten the name of the theorem showing that plus is commutative.  You can use a pattern to search for all theorems involving the equality of two additions.
-
-> ```Search (_ + _ = _ + _).```
-
-> You'll see a lot of results there, nearly all of them from the standard library.  To restrict the results, you can search inside a particular module:
-
-> ```Search (_ + _ = _ + _) inside Induction.```
-
-> You can also make the search more precise by using variables in the search pattern instead of wildcards:
-
-> ```Search (?x + ?y = ?y + ?x).```
-
-> The question mark in front of the variable is needed to indicate that it is a variable in the search pattern, rather than a variable that is expected to be in scope currently.
+> Coq's `Search` command is quite helpful with this.  Let's say you've forgotten the name of a theorem about `rev`.  The command `Search rev` will cause Coq to display a list of all theorems involving `rev`.
+<br><br>
+ ```Search rev.```
+<br><br>
+ Or say you've forgotten the name of the theorem showing that plus is commutative.  You can use a pattern to search for all theorems involving the equality of two additions.
+<br><br>
+ ```Search (_ + _ = _ + _).```
+<br><br>
+ You'll see a lot of results there, nearly all of them from the standard library.  To restrict the results, you can search inside a particular module:
+<br><br>
+ ```Search (_ + _ = _ + _) inside Induction.```
+<br><br>
+ You can also make the search more precise by using variables in the search pattern instead of wildcards:
+<br><br>
+ ```Search (?x + ?y = ?y + ?x).```
+<br><br>
+ The question mark in front of the variable is needed to indicate that it is a variable in the search pattern, rather than a variable that is expected to be in scope currently.
 
 Search only lemmas(works for `Theorem`, `Example`, `Definition`, etc.):
 
-```Search is:Lemma (_ + _ = _ + _)```
+```coq
+Search is:Lemma (_ + _ = _ + _)
+```
 
 ### `Check x`
 

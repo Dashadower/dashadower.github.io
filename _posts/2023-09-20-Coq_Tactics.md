@@ -118,6 +118,21 @@ analysis. `x` can be an inductively defined type or an equation that yields an i
     , using `destruct H as [x' H']` introduces a variable `x'` which satisfies the quantifier and hypothesis `H': S n = S n' + x'`
     which is true for `x'`.
 
+    If you have multiple variables within the existential quantifier, e.g)
+
+    ```coq
+    H0 : exists s1 s3 s4 : list T, s2 = s1 ++ s3 ++ s4
+    --------------
+    ```
+    
+    You can run
+    ```coq
+    destruct H0 as (s1 & s3 & s5 & H0).
+    ```
+
+    To introduce all the quantified variables and the hypothesis within a single command.
+
+
 - `destruct H` (On hypotheses that are `False`):
 
     Ex falso quodlibet. If a hypothesis is a `False`, complete the proof.
@@ -191,5 +206,7 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
         `inversion` throws these away.
      > - The ones that are left represent the cases that must be 
         proved to establish the original goal.  For those, `inversion` adds to the proof context all equations that must hold of the arguments given to `P` -- e.g., `n' = n` in the proof of `evSS_ev`).
+
+    (For detailed info check the blog post on inductive props)
 
 - `remember e as x`: Replace all occurrences of the expression `e` with the variable `x`, and adds `x = e` to the context.
