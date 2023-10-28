@@ -442,8 +442,7 @@ Qed.
 Lemma app_nil_nil: forall T (l m : list T),
   l ++ m = [] -> l = [] /\ m = [].
 Proof.
-  intros T. intros l m.
-  generalize dependent l.
+  intros T. intros l.
   induction l.
     - intros . simpl in *. split. reflexivity. apply H.
     - intros . simpl in *. inversion H.

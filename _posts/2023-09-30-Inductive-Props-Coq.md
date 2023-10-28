@@ -44,8 +44,8 @@ be able to construct the set of all even natural numbers.
 To prove that some number `n'` is even, we must show that `n'` is constructible from the above two cases. Informally that means showing the following implication holds:
 
 $$
-\forall n: \mathsf{nat}, \ \mathsf{ev} \ n \rightarrow n = 0 \ \vee \mathsf{ev} \ n' \ \wedge \exists n'. 
-  \ n = \ S \ (S\  n')
+\forall n: \mathsf{nat}, \ \mathsf{ev} \ n \rightarrow n = 0 \ \vee 
+\{ \exists n'. \ \mathsf{ev} \ n' \wedge \ n = \ S \ (S\  n') \}
 $$
 
 An inductive proposition defines a way to construct *propositions* inductively: either standalone propositions or a mapping that creates another proposition given a proposition. The even example can be expressed in Coq as the following:
@@ -101,7 +101,7 @@ If it's in the goal, the problem switches to constructing evidence of the propos
 
 $$
 \begin{array}{c}
-  n: \mathsf{nat} \quad \mathsf{ev} \ S \ (S \ n) \quad \forall n': \mathsf{nat}. \ \mathsf{ev} \ n' \rightarrow \mathsf{ev} \ S \ (S\  n') \\
+  n: \mathsf{nat} \quad \mathsf{ev} \ S \ (S \ n) \quad \forall n'. \ \mathsf{ev} \ n' \rightarrow \mathsf{ev} \ S \ (S\  n') \\
   \hline
   \mathsf{ev} \ n
 \end{array}
