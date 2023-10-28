@@ -35,7 +35,7 @@ $$
 
 the $\lambda$-calculus we will be looking at in this chapter only works with *untyped* $\lambda$-calculus. This means we don't consider the types of variables and expressions. Untyped $\lambda$-calculus is simpler to describe, but isn't sufficient in describing mathematical logic. We need *typed* $\lambda$-calculus as a stronger tool.
 
-#### Syntax and Basic Rules
+### Syntax and Basic Rules
 $\lambda$-calculus is composed of expressions called *$\lambda$-terms*. We will define the set of all lambda terms $E$, inductively, like from formal logic:
 
 $$
@@ -64,7 +64,7 @@ $$
 
 ----
 
-##### $\alpha$-Conversion
+### $\alpha$-Conversion
 
 Since every abstraction $\lambda x. E$ binds some variable $x$ in scope $E$. We need to identify the set of *free variables* that's allowed in an expression. The set $\text{FV}(E)$ of free variables in expression E is defined as:
 
@@ -75,6 +75,8 @@ $$
 \text{FV}(\lambda x. E) &= \text{FV}(E) - \{x\}, \ x \in V \\
 \end{aligned}
 $$
+
+So free variable are variables which are usused within a lambda abstraction. In standard programming terms, you can think of it as variables which aren't bounded by some scope.
 
 Once we identifed the set of free variables in an expression $E$, we can try and *substitute* all free variables in $E$ with another expression. Let $E/\delta$ denote substituting occurences of variable $x$ in $E$, with $\delta \ x$. $E/\delta$ is defined as:
 
@@ -118,7 +120,10 @@ are functionally equivalent.
 
 ----
 
-##### Reduction
+### Reduction
+
+#### $\beta$-Reduction
+
 Recall that $\lambda$-calculus is just a way to represent repeated function applications. This leads us to thinking, if we compose applications, couldn't we *reduce* them so that we can sequentially apply the function? The answer to this is yes. Consider the following lambda term:
 
 $$
@@ -130,7 +135,9 @@ A term of this form is called a *redex*, which represents applying the function 
 Suppose we have an expression $E_0$ that contains one or more occurences of $(\lambda x. E) E'$. Let $E_1$ be obtained from $E_0$ by replacing $(\lambda x. E) E'$ with $E/x \rightarrow E'$. Then we write $E_0 \rightarrow E_1$, and say that $E_0$ *contracts* to $E_1$. Using this notation, we can write the $\beta$-reduction rule:
 
 $$
-\frac{}{(\lambda x. E) E' \rightarrow (E/x \rightarrow E')}
+\begin{gather*}
+\frac{}{(\lambda x. E) E' \rightarrow (E/x \rightarrow E')} \rlap{ \quad ($\beta$\text{-reduction})}
+\end{gather*}
 $$
 
 This is a very intuitive rule - we can convert function applications by just *substituting function calls with its function body applied to the arguments*.
@@ -188,6 +195,32 @@ but end up with the same normal form, $z \ (z \ w)$.
 This is the *Church-Rosser Theorem*, which states that the order of reduction does not matter. More formally, if $a \rightarrow^* b$ and $a \rightarrow^* c$, then there exists some $d$ such that $b \rightarrow^* d$ and $c \rightarrow^* d$.
 <span class='centerImg'>![[church_rosser.png]]</span>
 
+
+#### $\eta$-Reduction
+
+$\eta$-reduction expresses the notion of *functional extensionality*:
+
+$$
+\begin{gather*}
+\frac{v \notin FV(e)}{\lambda v. ev \rightarrow e}  \rlap{ \quad ($\eta$\text{-reduction})}
+\end{gather*}
+$$
+
+Regardless of the form of $e$ and the input $v$, the abstraction $\lambda v. ev$ always contracts to e. No matter how many "identity" functions are applied to $e$, for all inputs the resulting normal form is always the same. 
+
+Why does $v$ need not be a free variable in $e$? Functional extensionality implies:
+
+$$\forall x. f(x) = g(x) \rightarrow f = g$$
+
+Notice that the argument $x$ is same across the two functions. Suppose I wish to encode it in lambda calculus. I can define some function g as:
+
+$$ \lambda x. f x$$
+
+If $x$ is not a free variable in $f$, which by definition, implies that $x$ is indeed the argument of $f$ we immediately can identify functional extensionality as implied by the **same argument** being passed to f and g.
+
+Suppose I instead use $x' \in FV(f)$. $g = \lambda x'. f x'$ doesn't immediately reveal that $x' = x$ so the only choice is to perform an $\beta$-reduction which substitutes $x'$ in place of $x$.
+
+
 #### Church-Turing Thesis and the Church Numerals
 From wikipedia:
 > In computability theory, the Church–Turing thesis (also known as computability thesis, the Turing–Church thesis, the Church–Turing conjecture, Church's thesis, Church's conjecture, and Turing's thesis) is a thesis about the nature of computable functions. It states that a function on the natural numbers can be calculated by an effective method if and only if it is computable by a Turing machine.
@@ -228,3 +261,14 @@ $$
 
 You might look at this and ask, "so where is the number $n$?". This may sound confusing, but the Church Numerals does not mean to return an output number $n$. Instead, it holds the meaning of applying some function $f$, to some argument $x$, $n$ times. Thus *this function form itself is the Church Numeral, not its result*. It implys, "do something $n$ amount of times".
 
+If we plug in the successor function $S$ as $f$ and zero for $x$, then we have the peano numerals:
+
+$$
+\begin{aligned}
+c_0 &= \lambda f.\lambda x. x \ S \ 0 = 0 \\
+c_1 &= \lambda f.\lambda x. (f \ x) \ S \ 0 = S \ 0 \\
+c_2 &= \lambda f.\lambda x. (f \ (f \ x)) \ S \ 0 = S \ (S \ 0) \\
+&\vdots \\
+c_n &= \lambda f.\lambda x. f^n(x) \ S \ 0 = S^{n} \ 0
+\end{aligned}
+$$
