@@ -77,8 +77,10 @@ Notation "x =? y" := (eqb x y) : nat_scope (default interpretation)
 Notation "x =? y" := (String.eqb x y) : string_scope 
 ```
 
+Lemmas marked with '*' are my personal lemmas.
+
 ## Nat
-Lemmas marked with '*' are not in `Coq.Init.Peano`.
+
 ### `plus_n_0`
 ```coq
 forall n:nat, n = n + 0.
@@ -418,8 +420,37 @@ Proof.
 Qed.
 ```
 
+### `le_any`*
+```coq
+Lemma le_any : forall (n m p : nat),
+  n <= m -> n <= m + p.
+Proof.
+  intros n m p.
+  generalize dependent n.
+  generalize dependent m. 
+  induction p.
+    - intros . rewrite <- plus_n_O. apply H.
+    - intros . rewrite <- plus_n_Sm. rewrite <- plus_Sn_m. apply IHp. 
+      apply le_S in H. apply H.
+Qed.
+```
+
+## Lists
+
+### `app_nil_nil`*
+```coq
+Lemma app_nil_nil: forall T (l m : list T),
+  l ++ m = [] -> l = [] /\ m = [].
+Proof.
+  intros T. intros l m.
+  generalize dependent l.
+  induction l.
+    - intros . simpl in *. split. reflexivity. apply H.
+    - intros . simpl in *. inversion H.
+Qed.
+```
+
 ## Bool
-Lemmas marked with * are not in `Coq.Bool.Bool`
 ### `eqb_subst`
 ```coq
 forall (P:bool -> Prop) (b1 b2:bool), eqb b1 b2 = true -> P b1 -> P b2.
