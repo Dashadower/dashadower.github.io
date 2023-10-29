@@ -435,6 +435,45 @@ Proof.
 Qed.
 ```
 
+### `plus_le_cases_middle`*
+```coq
+Lemma plus_le_cases_middle : forall (n m p q : nat),
+  (* This is my lemma that encapsulates LEM for le *)
+  n + m <= p + q -> (n <= p /\ m <= q) \/ (n <= p /\ m > q) \/ (n > p /\ m <= q).
+Proof.
+  intros n m p.
+  generalize dependent m.
+  generalize dependent n.
+  induction p.
+    - simpl. intros n. induction n.
+      + simpl in *. intros . left. split. apply le_n. apply H.
+      + intros . simpl in H. rewrite plus_n_Sm in H. apply IHn in H as H1.
+        destruct H1.
+          * destruct H0. right. right. split. unfold gt. unfold lt. apply n_le_m__Sn_le_Sm. apply O_le_n.
+            apply le_S in H1. apply Sn_le_Sm__n_le_m in H1. apply H1.
+          * destruct H0.
+            ** destruct H0. right. right. split. unfold gt. unfold lt. apply n_le_m__Sn_le_Sm. apply O_le_n.
+               apply plus_le in H. destruct H. apply le_S in H2. apply Sn_le_Sm__n_le_m in H2. apply H2.
+            ** destruct H0. right. right. split. unfold gt. unfold lt. apply n_le_m__Sn_le_Sm. apply O_le_n.
+               apply plus_le in H. destruct H. apply le_S in H2. apply Sn_le_Sm__n_le_m in H2. apply H2.
+    - intros n. induction n.
+      + intros. simpl in *. rewrite plus_n_Sm in H. apply (IHp 0 _ _) in H. destruct H.
+        * destruct H. destruct q.
+          ** inversion H0. right. left. split. apply le_S. apply O_le_n. unfold gt. unfold lt. apply le_n.
+             left. split. apply O_le_n. apply H2.
+          ** inversion H0. right. left. split. apply O_le_n. unfold gt. unfold lt. apply le_n. left. split. apply O_le_n. apply H2.
+        * destruct H.
+          ** destruct H. right. left. split. apply O_le_n. unfold gt in *. unfold lt in *. apply le_S in H0. apply Sn_le_Sm__n_le_m in H0. apply H0.
+          ** destruct H. inversion H0. right. left. split. apply O_le_n. unfold gt. unfold lt. apply le_n.
+             left. split. apply O_le_n. apply H2.
+      + intros. simpl in H. apply Sn_le_Sm__n_le_m in H. apply IHp in H. destruct H.
+        * destruct H. left. split. apply n_le_m__Sn_le_Sm. apply H. apply H0.
+        * destruct H.
+          ** destruct H. right. left. split. apply n_le_m__Sn_le_Sm. apply H. apply H0.
+          ** destruct H. right. right. split. unfold gt in *. unfold lt in *. apply n_le_m__Sn_le_Sm. apply H. apply H0.
+Qed.
+```
+
 ## Lists
 
 ### `app_nil_nil`*
