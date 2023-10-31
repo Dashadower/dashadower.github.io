@@ -474,6 +474,23 @@ Proof.
 Qed.
 ```
 
+### `add_le_trans`*
+```coq
+Lemma add_le_trans : forall (n m p q : nat),
+  n <= m -> p <= q -> n + p <= m + q.
+Proof.
+  intros n m p q.
+  generalize dependent p.
+  induction q.
+    - intros. inversion H0. rewrite <- plus_n_O. rewrite <- plus_n_O. apply H. 
+    - intros. destruct p.
+      + rewrite <- plus_n_O. apply le_any. apply H.
+      + rewrite <- plus_n_Sm. rewrite <- plus_n_Sm. apply n_le_m__Sn_le_Sm. apply IHq.
+        * apply H.
+        * apply Sn_le_Sm__n_le_m in H0. apply H0.
+Qed.
+```
+
 ## Lists
 
 ### `app_nil_nil`*
@@ -549,4 +566,19 @@ forall b1 b2 b3:bool, b1 && (b2 && b3) = b1 && b2 && b3.
 ### `f_equal`
 ```coq
 forall (A B : Type) (f : A -> B) (x y : A), x = y -> f x = f y.
+```
+
+### `leb_false_complete`*
+```coq
+Lemma leb_false_complete : forall (n m : nat),
+  (n <=? m) = false -> n > m.
+Proof.
+  intros n.
+  induction n.
+    - intros. inversion H.
+    - intros. destruct m.
+      + unfold gt. unfold lt. apply n_le_m__Sn_le_Sm. apply O_le_n.
+      + unfold gt in *. unfold lt in *. apply n_le_m__Sn_le_Sm. apply IHn. simpl in H.
+        apply H.
+Qed.
 ```
