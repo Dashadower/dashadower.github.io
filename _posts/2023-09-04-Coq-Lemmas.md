@@ -491,6 +491,20 @@ Proof.
 Qed.
 ```
 
+
+### `le_Sn_le_stt`*
+```coq
+Lemma le_Sn_le_stt : forall (n m : nat),
+  S n <= m -> n <= m.
+Proof.
+  intros.
+  generalize dependent n.
+  induction m.
+    - intros. inversion H.
+    - intros. apply Sn_le_Sm__n_le_m in H. apply le_S in H. apply H.
+Qed.
+```
+
 ## Lists
 
 ### `app_nil_nil`*
@@ -505,67 +519,80 @@ Proof.
 Qed.
 ```
 
+### `subseq_len_le_nat`*
+```coq
+Lemma subseq_len_le_nat : forall (ls l : list nat),
+  subseq ls l -> length ls <= length l.
+Proof.
+  intros.
+  induction H.
+    - apply le_n.
+    - simpl. apply le_S. apply IHsubseq.
+    - simpl. apply n_le_m__Sn_le_Sm. apply IHsubseq.
+Qed.
+```
+
+### `filter_le_l`*
+```coq
+Lemma filter_le_l : forall (X : Type) (l l2 : list X) (test : X -> bool),
+  length l2 <= length (filter test l) -> length l2 <= length l.
+Proof.
+  intros X.
+  intros l l2 test.
+  generalize dependent l2.
+  induction l.
+    - simpl. intros. apply H.
+    - destruct l2. 
+        + intros. simpl in *. apply O_le_n.
+        + intros. simpl in *. apply n_le_m__Sn_le_Sm. apply IHl.
+          destruct (test x) eqn:Eqtx.
+            * simpl in H. apply Sn_le_Sm__n_le_m in H. apply H.
+            * apply le_Sn_le_stt in H. apply H.
+Qed.
+```
+
 ## Bool
-### `eqb_subst`
+
+### `leb_iff`*
 ```coq
-forall (P:bool -> Prop) (b1 b2:bool), eqb b1 b2 = true -> P b1 -> P b2.
+Theorem leb_iff : forall n m,
+  n <=? m = true <-> n <= m.
+Proof.
+  intros n m.
+  split.
+    - intros H. apply leb_complete in H. apply H.
+    - intros H. apply leb_correct in H. apply H.
+Qed.
 ```
 
-### `eqb_reflx`
+### `leb_true_trans`*
 ```coq
-forall b:bool, eqb b b = true.
+Theorem leb_true_trans : forall n m o,
+  n <=? m = true -> m <=? o = true -> n <=? o = true.
+Proof.
+  intros n m o.
+  intros H1.
+  intros H2.
+  apply leb_complete in H1.
+  apply leb_complete in H2.
+  apply (le_trans n m o) in H1.
+   - apply leb_correct. apply H1.
+   - apply H2.
+Qed.
 ```
 
-### `eqb_prop`
+### `leb_complete`*
 ```coq
-forall a b:bool, eqb a b = true -> a = b.
-```
-
-### `eqb_true_iff`
-```coq
-forall a b:bool, eqb a b = true <-> a = b.
-```
-
-### `eqb_false_iff`
-```coq
-forall a b:bool, eqb a b = false <-> a <> b.
-```
-
-### `negb_orb`
-De Morgan
-```coq
-forall b1 b2:bool, negb (b1 || b2) = negb b1 && negb b2.
-```
-
-### `negb_andb`
-De Morgan
-```coq
-forall b1 b2:bool, negb (b1 && b2) = negb b1 || negb b2.
-```
-
-### `orb_comm`
-```coq
-forall b1 b2:bool, b1 || b2 = b2 || b1.
-```
-
-### `orb_assoc`
-```coq
-forall b1 b2 b3:bool, b1 || (b2 || b3) = b1 || b2 || b3.
-```
-
-### `andb_comm`
-```coq
-forall b1 b2:bool, b1 && b2 = b2 && b1.
-```
-
-### `andb_assoc`
-```coq
-forall b1 b2 b3:bool, b1 && (b2 && b3) = b1 && b2 && b3.
-```
-
-### `f_equal`
-```coq
-forall (A B : Type) (f : A -> B) (x y : A), x = y -> f x = f y.
+Theorem leb_complete : forall n m,
+  n <=? m = true -> n <= m.
+Proof.
+  intros n.
+  induction n.
+    - intros m H. apply O_le_n.
+    - intros m. intros H.  destruct m.
+      + simpl in H. discriminate H.
+      + simpl in H. apply IHn in H. apply n_le_m__Sn_le_Sm. apply H.
+Qed.
 ```
 
 ### `leb_false_complete`*
