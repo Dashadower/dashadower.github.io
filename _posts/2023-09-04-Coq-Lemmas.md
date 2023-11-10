@@ -534,20 +534,38 @@ Qed.
 
 ### `filter_le_l`*
 ```coq
-Lemma filter_le_l : forall (X : Type) (l l2 : list X) (test : X -> bool),
-  length l2 <= length (filter test l) -> length l2 <= length l.
+Lemma filter_le_l : forall (X : Type) (n : nat) (l : list X) (test : X -> bool),
+  n <= length (filter test l) -> n <= length l.
 Proof.
   intros X.
-  intros l l2 test.
-  generalize dependent l2.
+  intros n l test.
+  generalize dependent n.
   induction l.
     - simpl. intros. apply H.
-    - destruct l2. 
-        + intros. simpl in *. apply O_le_n.
-        + intros. simpl in *. apply n_le_m__Sn_le_Sm. apply IHl.
-          destruct (test x) eqn:Eqtx.
-            * simpl in H. apply Sn_le_Sm__n_le_m in H. apply H.
-            * apply le_Sn_le_stt in H. apply H.
+    - intros. simpl. destruct n.
+      + apply O_le_n.
+      + simpl in H. destruct (test x) eqn:Eqtx.
+        * simpl in H. apply n_le_m__Sn_le_Sm. apply Sn_le_Sm__n_le_m in H. apply IHl.
+          apply H.
+        * apply n_le_m__Sn_le_Sm. apply IHl. apply le_S in H. apply Sn_le_Sm__n_le_m in H. apply H.
+Qed.
+```
+
+### `subseq_head_eq`*
+```coq
+Lemma subseq_head_eq : forall (l1 l2 : list nat) (n : nat),
+  subseq (n :: l1) (n :: l2) -> subseq l1 l2.
+Proof.
+  intros.
+  generalize dependent l1.
+  generalize dependent n.
+  induction l2.
+    - intros. inversion H. inversion H2. inversion H1. apply subseq_nil. 
+    - intros. inversion H.
+      + inversion H2.
+        * apply subseq_head_r. apply (subseq_head_r _ _ n) in H6. apply IHl2 in H6. apply H6.
+        * apply subseq_head_r. apply H5.
+      + apply H1.
 Qed.
 ```
 
