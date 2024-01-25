@@ -97,7 +97,7 @@ analysis. `x` can be an inductively defined type or an equation that yields an i
     ---------------
     ```
 
-    Destructing a cunjunctive hypothesis is common that if you have a hypothesis `H` with a conjunctive form, you can compresses `intros H; destruct H as [Hn Hm]` into `intros [Hn Hm]` (when it's the hypothesis's turn to be introduced). Brackets can  be nested for multiple conjunctive statements.
+    Destructing a conjunctive hypothesis is common that if you have a hypothesis `H` with a conjunctive form, you can compresses `intros H; destruct H as [Hn Hm]` into `intros [Hn Hm]` (when it's the hypothesis's turn to be introduced). Brackets can  be nested for multiple conjunctive statements.
 
     If you dont need a portion, simply use `_` to throw it away:
 
@@ -153,6 +153,8 @@ equalities between values of inductively defined types within hypothesis `H`(or 
 
 - `assert (H: e)` (or `assert (e) as H`): introduce a "local
 lemma" `e` and call it `H` (보조정리 도입)
+
+- `assert (H1 := H)` : duplicate hypothesis `H` into `H1`
 
 - `generalize dependent x`: move the variable `x` (and anything
 else that depends on it) from the context back to an explicit
