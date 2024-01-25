@@ -569,6 +569,33 @@ Proof.
 Qed.
 ```
 
+### `l_eq_nil`*
+```coq
+Lemma l_eq_nil : forall (X : Type) (l : list X) (x : X),
+  l ++ [x] = [] -> False.
+Proof.
+  intros.
+  induction l.
+    - inversion H.
+    - simpl in *. inversion H.
+Qed.
+```
+
+### `tail_app_eq`*
+```coq
+Lemma tail_app_eq : forall (X : Type) (l m : list X) (x : X),
+  l ++ [x] = m ++ [x] -> l = m.
+Proof.
+  intros X l.
+  induction l.
+    - simpl. intros. destruct m. reflexivity. simpl in *. inversion H. symmetry in H2.
+      apply l_eq_nil in H2. destruct H2.
+    - simpl. intros. destruct m.
+        + inversion H. apply l_eq_nil in H2. destruct H2.
+        + simpl in H. inversion H. apply IHl in H2. rewrite H2. reflexivity.
+Qed.
+```
+
 ## Bool
 
 ### `leb_iff`*
