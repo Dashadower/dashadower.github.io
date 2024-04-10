@@ -4,6 +4,8 @@ title: Coq Tactics
 usemathjax: true
 ---
 
+### Non-automatic
+
 - `intros`: move hypotheses/variables from goal to context
 
     To introduce a conjunctive hypothesis `A /\ B` into `H1: A; H2: B`, use `intros [H1 H2]`.
@@ -160,6 +162,8 @@ lemma" `e` and call it `H` (보조정리 도입)
 else that depends on it) from the context back to an explicit
 hypothesis in the goal formula. (reverses `intros` and converts to universal quantification)
 
+- `revert x` : weaker version of `generalize dependent`
+
 - `f_equal`: change a goal of the form `f x = f y` into `x = y`
 
 - `split`: Split the clauses of conjunction(logical AND) `A /\ B`, into subgoals `A` and `B`.
@@ -212,6 +216,7 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
     (For detailed info check the blog post on inductive props)
 
 - `remember e as x`: Replace all occurrences of the expression `e` with the variable `x`, and adds `x = e` to the context.
+- `remember e as x eqn:Eqx`: same as above, but name the equality as `Eqx`
 
 - `clear H` : Delete hypothesis `H` from the context
 
