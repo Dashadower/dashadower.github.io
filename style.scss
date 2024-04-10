@@ -294,6 +294,15 @@ nav {
 	table tr:nth-child(2n) {
 	  background-color: #f8f8f8;
 	}
+
+  pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #e2e2e2;
+    border-radius: 3px;
+  }
 }
 
 .wrapper-footer {
