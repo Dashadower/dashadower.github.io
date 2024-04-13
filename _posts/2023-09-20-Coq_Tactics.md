@@ -4,7 +4,7 @@ title: Coq Tactics
 usemathjax: true
 ---
 
-### Non-automatic
+## Non-automatic
 
 - `intros`: move hypotheses/variables from goal to context
 
@@ -235,3 +235,90 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 -  `constructor` : Try to find a constructor `c` (from some Inductive definition in the current environment) that can be applied to solve the current goal. If one is found, behave like `apply c`
 
 - `all: ` : run tactic on all remaining goals. Useful when running chained tactics with `;`. example: `all: unfold not; intros. inversion H`
+
+
+## Automation
+
+### `auto`
+
+(The following is quoted from Software Foundations)
+
+The auto tactic solves goals that are solvable by any combination of `intros` and `apply` (of hypotheses from the local context, by default).
+
+Using `auto` is always "safe" in the sense that it will never fail and will never change the proof state: either it completely solves the current goal, or it does nothing.
+
+By default, auto recursively attempts to apply `apply` up to a given depth. You can specify the max search depth by using `auto n`, where `n` is a number.
+
+When searching for potential proofs of the current goal, auto considers the hypotheses in the current context together with a *hint database* of other lemmas and constructors. Some common lemmas about equality and logical operators are installed in this hint database by default.
+
+We can add theorems/constructors to the global hint database by writing
+
+```coq
+Hint Resolve T : core.
+```
+
+where `T` is a top-level theorem or a constructor of an inductively defined proposition (i.e., anything whose type is an implication). As a shorthand, we can write
+
+```coq
+Hint Constructors c : core.
+```
+
+to tell Coq to do a `Hint Resolve` for all of the constructors from the inductive definition of `c`.
+It is also sometimes necessary to add
+
+```coq
+Hint Unfold d : core.
+```
+
+where `d` is a defined symbol, so that auto knows to expand uses of `d`, thus enabling further possibilities for applying lemmas that it knows about.
+
+- `debug auto.` : Vernacular command which prints the search trace of auto.
+- `info_auto.` : Vernacular command which shows what sequence of tactics succesfully proved the goal.
+
+
+## Ltac
+
+Ltac lets you create custom "macro" tactics to eliminate common tactic sequences into a single command.
+
+```coq
+H1: beval st b = false
+H2: beval st b = true
+```
+
+Having the two hypothesis would result in calling `rewrite H1 in H2; discriminate H2` to prove. Writing this in Ltac would result in:
+
+```coq
+Ltac rwd H1 H2 := rewrite H1 in H2; discriminate.
+```
+
+which lessens the amount of commands you have to type.
+
+### Pattern matching
+
+Ltac also supports pattern matching on goals and hypotheses:
+
+```coq
+Ltac find_rwd :=
+  match goal with
+    H1: ?E = true,
+    H2: ?E = false
+    |- _ => rwd H1 H2
+  end.
+```
+
+This would find two hypotheses that have the form `E = true`, `E = false`, and automatically call `rwd` tactic we defined. 
+
+The syntax is similar to defining variables in `Check` or `Locate`: We use a question mark to specify what we're looking for.
+
+Ltac can also handle quantifiers:
+
+```coq
+Ltac find_eqn :=
+  match goal with
+    H1: forall x, ?P x -> ?L = ?R,
+    H2: ?P ?X
+    |- _ => rewrite (H1 X H2) in *
+  end.
+```
+
+Ltac will try to find a proposition defined for some variable x which implies some equality, and then will also find a hypothesis in which it can apply the implication, and proceed to rewrite the implied equality.
