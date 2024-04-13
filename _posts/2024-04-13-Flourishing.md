@@ -23,3 +23,4 @@ usemathjax: false
 
 - Jobs that enable self-realization are limited in nature
 - The majority of the general public(or "working class") lacks the effective freedom to focus on self-realization
+- Education: albeit the majority of the population get higher education, college-job mismatch remains a majority
