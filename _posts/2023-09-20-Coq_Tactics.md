@@ -54,6 +54,8 @@ the goal. use
 
 - `rewrite L in H`: ... or within a hypothesis `H`
 
+- `rewrite L at n`: Rewrite only the `n`th occurence term that matches `L`. Rewrite finds the first matching subterm in depth-first search order. Only subterms identical to that first matched subterm are rewritten.
+
 - `symmetry`: changes a goal of the form `t=u` into `u=t`
 
 - `symmetry in H`: changes a hypothesis of the form `t=u` into
