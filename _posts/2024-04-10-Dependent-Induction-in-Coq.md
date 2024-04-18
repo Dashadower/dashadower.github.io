@@ -302,6 +302,14 @@ exists st'' : state, st'' =[ skip ]=> st / SBreak
 
 We can see that by keeping the equality on "occupied indices" of the original hypothesis, we have much more to work with.
 
+Another observation is that most goals become trivial by contradiction on `Eqcom`. Often, this is the case.
+It's handy to immediately try to invert the contradiction and substitute:
+
+```coq
+remember (<{your_arbitrary_command}>) as com eqn:Eqcom.
+induction my_target_relation; inversion Eqcom; subst.
+```
+
 ### Solution 2: `dependent induction H`
 
 The problem with the first solution is that since we're only applying induction, we can take advantage of inversion to eliminate trivial goals.
