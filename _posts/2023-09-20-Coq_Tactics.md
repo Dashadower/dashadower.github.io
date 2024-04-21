@@ -67,6 +67,8 @@ the goal. use
 - `unfold x`: replace a defined constant `x` by its right-hand side in
 the goal. Frequently `x` is a function. (함수 전개)
 
+- `unfold x, y`: ... or unfold multiple definitions
+
 - `unfold x in H`: ... or within a hypothesis `H`
 
 - `destruct x as ...`: case analysis on values of inductively
