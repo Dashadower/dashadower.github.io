@@ -238,6 +238,10 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 
 - `all: ` : run tactic on all remaining goals. Useful when running chained tactics with `;`. example: `all: unfold not; intros. inversion H`
 
+- `pose proof P`: introduce a previously proved theorem `P` as a hypothesis
+
+- `pose proof P as X`: ...or as hypothesis name `X`.
+
 
 ## Automation
 
