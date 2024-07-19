@@ -203,20 +203,6 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 
     You can observe that `inversion` performs destruct in an opposite direction: it checks the cases in which an inductive property is defined and performs case analysis, identifying the precondition which is required for the hypothesis to hold.
 
-    Here's an excerpt from Software Foundations as a summary:
-
-    > Here's how [inversion] works in general.
-    >  - Suppose the name `H` refers to an assumption `P` in the
-        current context, where `P` has been defined by an `Inductive` declaration.
-    >  - Then, for each of the constructors of `P`, `inversion H`
-        generates a subgoal in which `H` has been replaced by the
-        specific conditions under which this constructor could have
-        been used to prove `P`.
-     > - Some of these subgoals will be self-contradictory; 
-        `inversion` throws these away.
-     > - The ones that are left represent the cases that must be 
-        proved to establish the original goal.  For those, `inversion` adds to the proof context all equations that must hold of the arguments given to `P` -- e.g., `n' = n` in the proof of `evSS_ev`).
-
     (For detailed info check the blog post on inductive props)
 
 - `remember e as x`: Replace all occurrences of the expression `e` with the variable `x`, and adds `x = e` to the context.
@@ -282,7 +268,7 @@ where `d` is a defined symbol, so that auto knows to expand uses of `d`, thus en
 - `info_auto.` : Vernacular command which shows what sequence of tactics succesfully proved the goal.
 
 
-## Ltac
+### Ltac
 
 Ltac lets you create custom "macro" tactics to eliminate common tactic sequences into a single command.
 
