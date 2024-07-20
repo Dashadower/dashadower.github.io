@@ -228,6 +228,12 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 
 - `pose proof P as X`: ...or as hypothesis name `X`.
 
+### Display, does not alter proof state
+
+- `move h before h'` : Reorder hypothesis `h` so it comes right above `h'`
+-  `move h after h'` : ...or right below it
+- `move h at top` : ...or to the top
+- `move h at bottom` : ...or to the bottom
 
 ## Automation
 
