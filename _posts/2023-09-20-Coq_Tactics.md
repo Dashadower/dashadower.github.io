@@ -224,7 +224,30 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 
 - `all: ` : run tactic on all remaining goals. Useful when running chained tactics with `;`. example: `all: unfold not; intros. inversion H`
 
-- `pose proof P`: introduce a previously proved theorem `P` as a hypothesis
+- `specialize H` : replaces a given hypothesis with that hypothesis applied to some other term.
+
+  ```
+  Example specialize {A B: Type} (H: A -> B) (a: A): B.
+  Proof.
+    specialize (H a).
+    exact H.
+  Qed.
+  ```
+
+  `specialize (H a)` will apply H to a (apply as in function application)
+  and replaces `H` with it.
+
+- `pose proof P`: introduce a previously proved theorem `P` as a hypothesis. You can even use this to instantiate implications/theorems in your current goal context!
+
+  For example, suppose I have 
+
+  ```
+  H : forall n m : nat, n < m -> n < m + 1
+  ```
+
+  Then, I can do `pose proof (H 0 1)` to instantiate `H` with `n = 0, m = 1)`
+
+  This is the same as `(specialize H 0 1)`, except specialize replaces the original `H` with the instantiated version.
 
 - `pose proof P as X`: ...or as hypothesis name `X`.
 
