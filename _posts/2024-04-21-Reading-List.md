@@ -9,3 +9,4 @@ usemathjax: true
 - [Program Obfuscation Coq](https://conferences.computer.org/eurosp/pdfs/EuroSPW2020-7k9FlVRX4z43j4uE2SeXU0/859700a634/859700a634.pdf)
 - [Compcert Memory Model](https://inria.hal.science/hal-00703441v1/document)
 - [Incorrectness logic](https://dl.acm.org/doi/10.1145/3371078)
+- [Interaction trees](https://dl.acm.org/doi/10.1145/3371119)
