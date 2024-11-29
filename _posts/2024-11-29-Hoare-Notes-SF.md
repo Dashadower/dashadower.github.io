@@ -4,17 +4,19 @@ title: Hoare Logic Notes for Solving SF
 usemathjax: true
 ---
 
+## Consequence Rule
+
 ```
   0   1   2   3   4   5   6   7   8   9   10  11  12
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 [--------------------0, 10------------------]      (Precondition P1)
               |--> x := x + 1 --> 
-    [--------------------1, 11------------------]  (Postcondition Q1)
+    [--------------------1, 11------------------]  (Weakened, less precise postcondition Q1)
 
 
-        [------------2, 8-----------]              (Stronger Precondition P2)
+        [------------2, 8-----------]              (Strengthened, more precise Precondition P2)
               |--> x := x + 1 -->
-            [------------3, 9-----------]          (Stronger Postcondition Q2)
+            [------------3, 9-----------]          (Postcondition Q2)
 __
 P2 -> P1  (strengthening precondition)
       __
@@ -25,29 +27,42 @@ $$
 \frac{P2 \implies P1 \quad Q2 \implies Q1 \quad \{ P1 \} C \{ Q2 \} }{ \{ P2 \} C \{ Q1 \} }
 $$
 
+In the context of implications on program states, I prefer to say "more precise" instead of "stronger" for intuition.
+
+Since all states that satisfy $P2$ also satisfy $P1$ but not the other way around, $P2$ is more precise than $P1$. Therefore, strengthening the precondition is equal to making the precondition more precise.
+
+Since $Q2$ is more precise than $Q1$, by definition it is safe to say that $Q2$ also implies a less precise condition posed by $Q1$. Therefore, weakening the postcondition is equal to making the precondition less precise.
+
+So to summarize, we're free to make the antecedent(precondition) more precise and the consequent(postcondition) less precise without loss of soundness.
+
 ------------------------------------------------------------
 
-This leads to the following skeleton:
+## Loop Invariants
+
+Use the following simple trick to find loop invariants for while hoare logic:
+
 {% raw %}
 ```
-        (1)    {{ X = m ∧ Y = n }}  ->>                   (a)
+        (1)    {{ P }}  ->>
         (2)    {{ Inv }}
-                 while X ≠ 0 do
-        (3)              {{ Inv ∧ X ≠ 0 }}  ->>          (c)
-        (4)              {{ Inv [X ⊢> X-1] [Y ⊢> Y-1] }}
-                   Y := Y - 1;
-        (5)              {{ Inv [X ⊢> X-1] }}
-                   X := X - 1
+                 while B do
+        (3)              {{ Inv ∧ B }}  ->>
+        (4)              {{ Inv [X ⊢> e2] [Y ⊢> e1] }}
+                   Y := e1;
+        (5)              {{ Inv [X ⊢> e2] }}
+                   X := e2
         (6)              {{ Inv }}
                  end
-        (7)    {{ Inv ∧ ¬(X ≠ 0) }}  ->>                (b)
-        (8)    {{ Y = n - m }}
+        (7)    {{ Inv ∧ ¬B }}  ->>
+        (8)    {{ Q }}
 ```
+(code and explanation taken from PLF and modified to be generic)
 {% endraw %}
-By examining this skeleton, we can see that any valid Inv will have to respect three conditions:
 
-(a) it must be weak enough to be implied by the loop's precondition, i.e., (1) must imply (2);
+By examining this skeleton, we can see that any valid loop invariant `Inv` will have to respect three conditions:
 
-(b) it must be strong enough to imply the program's postcondition, i.e., (7) must imply (8);
+1. it must be weak enough to be implied by the loop's precondition `P`, i.e., (1) must imply (2);
 
-(c) it must be preserved by a single iteration of the loop, assuming that the loop guard also evaluates to true, i.e., (3) must imply (4).
+2. it must be strong enough to imply the program's postcondition `Q`, i.e., (7) must imply (8);
+
+3. it must be preserved by a single iteration of the loop, assuming that the loop guard `B` also evaluates to true, i.e., (3) must imply (4).
