@@ -28,6 +28,7 @@ $$
 ------------------------------------------------------------
 
 This leads to the following skeleton:
+{% raw %}
 ```
         (1)    {{ X = m ∧ Y = n }}  ->>                   (a)
         (2)    {{ Inv }}
@@ -42,7 +43,7 @@ This leads to the following skeleton:
         (7)    {{ Inv ∧ ¬(X ≠ 0) }}  ->>                (b)
         (8)    {{ Y = n - m }}
 ```
-
+{% endraw %}
 By examining this skeleton, we can see that any valid Inv will have to respect three conditions:
 
 (a) it must be weak enough to be implied by the loop's precondition, i.e., (1) must imply (2);
