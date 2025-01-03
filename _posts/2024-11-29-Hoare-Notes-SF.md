@@ -27,13 +27,13 @@ $$
 \frac{P2 \implies P1 \quad Q2 \implies Q1 \quad \{ P1 \} C \{ Q2 \} }{ \{ P2 \} C \{ Q1 \} }
 $$
 
-In the context of implications on program states, I prefer to say "more precise" instead of "stronger" for intuition.
+In the context of implications on program states, I prefer to say "more/less precise" instead of "stronger/weaker" for intuition.
 
 Since all states that satisfy $P2$ also satisfy $P1$ but not the other way around, $P2$ is more precise than $P1$. Therefore, strengthening the precondition is equal to making the precondition more precise.
 
-Since $Q2$ is more precise than $Q1$, by definition it is safe to say that $Q2$ also implies a less precise condition posed by $Q1$. Therefore, weakening the postcondition is equal to making the precondition less precise.
+Since $Q2$ is more precise than $Q1$, by definition it is safe to say that $Q2$ also implies a less precise condition posed by $Q1$. Therefore, weakening the postcondition is equal to making the postcondition less precise.
 
-So to summarize, we're free to make the antecedent(precondition) more precise and the consequent(postcondition) less precise without loss of soundness.
+To summarize, we're free to make the antecedent(precondition) more precise and the consequent(postcondition) less precise without loss of soundness.
 
 ------------------------------------------------------------
 
