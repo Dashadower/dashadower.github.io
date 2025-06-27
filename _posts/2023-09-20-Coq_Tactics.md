@@ -258,6 +258,38 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 - `move h at top` : ...or to the top
 - `move h at bottom` : ...or to the bottom
 
+### Implicit Argument Passing
+
+Suppose we want to initialize the following trivial lemma:
+
+```coq
+assert (H1: [] = []) by reflexivity.
+```
+
+The command will fail with a strange error message:
+
+```coq
+Cannot infer the implicit parameter A of nil whose
+type is "Type" in environment
+```
+
+This is because if we print the list type, it accepts an _implicit_ argument `A` designating the type of the elements of the list:
+
+```coq
+Inductive list (A : Type) : Type :=
+  nil : list A | cons : A -> list A -> list A.
+```
+
+In this case, we need to explicitly pass `A` using `@`:
+
+```coq
+assert (H1: @nil nat = @nil nat) by reflexivity.
+```
+
+which will yield our expected result.
+
+[https://softwarefoundations.cis.upenn.edu/lf-current/Poly.html#lab123]()
+
 ## Automation
 
 ### `auto`
