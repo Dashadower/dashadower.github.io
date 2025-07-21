@@ -8,22 +8,17 @@ Shinyoung Kim
 
 -----------------------------------------------
 
-Places I Sat Through
+Education
 ---------
 
-2021-2026 (expected)
+2021-2027 (expected)
 :   **BSc, Computer Science**; Kookmin Unversity, Seoul, South Korea
 
-Stuff I Did
+Experience
 ----------
 * **Winter Research Program in collaboration with Columbia University** 2022 Jan.-2022-March
  
   Worked on developing algorithms that can explore a network of models written in Modular Stan. Wrote Haskell code to extend the modular stan library and presented our results to a research seminar. [slides](https://docs.google.com/presentation/d/1bMklK6OOARYEEfbHfH9MbOip8qJHcM6de22lvodDFDQ/edit?usp=sharing)
-
-* **Summer Research Program in collaboration with UCI** - Student Research Intern, 2021 June.-2021 August.
-  
-  Collaborated with the University of California, Irvine (Prof. Nikil Dutt) to optimize machine learning inference in the cloud. Contributed to writing a data collection framework for various ML models on GPUs in the process of developing optimal power profiles for various GPU architectures.
-
 
 * **Stan Development Team (Stan, <https://mc-stan.org/>)** - Development Team Member, 2020 Nov.-2022
   
@@ -33,13 +28,12 @@ Stuff I Did
 
   Implemented and deployed a quantity forecast service based on Bayesian seasonal forecasting models. I worked with 4 other software developers and data scientists to create and develop purpose-specific forecast models employing various tools such as stepwise selection, FBProphet, and Stan.
 
-
 * **Software Maestro (<https://www.swmaestro.org/>)** - Participant, 2019 June-2019 Dec.
   
   Participated in Government funded software development program, where I was part of a team which developed a video processing framework for online game footage. I utilized video processing and statistical analysis to provide automated coaching tips to players.
 
 
-Stuff I Wrote (together)
+Publications
 --------------------
 
 #### International
@@ -51,7 +45,7 @@ Stuff I Wrote (together)
 * “A study on the Failure Function of Logistics Industrial Equipment Using Bayesian Aggregation: An Application to Electric Forklift Engine Failure Rate”, **Shinyoung Kim**, Jinwoo Choi, Kwangshik Nam, Hyunji Moon, 2021.
 
 
-Stuff I Made (together)
+Projects
 --------------------
 
 * **Rat** (<https://github.com/bbbales2/regressions>, [slides](https://docs.google.com/presentation/d/1osPHI-tehvQaKrLM5F6ctAWUJoHXpM5ozGxpqkJt1do/edit?usp=sharing))
@@ -61,7 +55,7 @@ Rat is a probabilistic programming language focused on simplicity in writing hie
 A R package for Simulation Based Calibration on Stan and brms models in collaboration with Hyunji Moon, Martin Modrák, and Teemu Säilynoja. I wrote the initial version and am currently helping maintaining the package which contains various tools for running SBC and analyzing results.
 
 
-Stuff I Think I'm Good at
+Skills
 --------------------
 
 Programming: Python (High), C/C++ (High), R (High), Javascript/ES6(Intermediate)
