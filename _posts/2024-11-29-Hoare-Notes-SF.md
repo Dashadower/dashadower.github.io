@@ -31,7 +31,7 @@ In the context of implications on program states, I prefer to say "more/less pre
 
 Since all states that satisfy $P2$ also satisfy $P1$ but not the other way around, $P2$ is more precise than $P1$. Therefore, strengthening the precondition is equal to making the precondition more precise.
 
-Since $Q2$ is more precise than $Q1$, by definition it is safe to say that $Q2$ also implies a less precise condition posed by $Q1$. Therefore, weakening the postcondition is equal to making the postcondition less precise.
+Since $Q1$ is less precise than $Q2$, weakening the postcondition is equal to making the postcondition less precise.
 
 To summarize, we're free to make the antecedent(precondition) more precise and the consequent(postcondition) less precise without loss of soundness.
 
