@@ -6,32 +6,32 @@ usemathjax: true
 
 ## `\mathcal`
 
-$$
+$$  
 \mathcal{A \ B C \ D \ E \ F \ G \ H \ I \ J \ K \ L \ M \ N \ O \ P \ Q \ R \ S \ T \ U \ V \ W \ X \ Y \ Z}
 $$
 
 ## `\mathbb`
 
 $$
-\mathbb{A \ B C \ D \ E \ F \ G \ H \ I \ J \ K \ L \ M \ N \ O \ P \ Q \ R \ S \ T \ U \ V \ W \ X \ Y \ Z}
+\mathbb{A \ B \ C \ D \ E \ F \ G \ H \ I \ J \ K \ L \ M \ N \ O \ P \ Q \ R \ S \ T \ U \ V \ W \ X \ Y \ Z}
 $$
 
 ## `\mathrm`
 
 $$
-\mathrm{A \ B C \ D \ E \ F \ G \ H \ I \ J \ K \ L \ M \ N \ O \ P \ Q \ R \ S \ T \ U \ V \ W \ X \ Y \ Z}
+\mathrm{A \ B \ C \ D \ E \ F \ G \ H \ I \ J \ K \ L \ M \ N \ O \ P \ Q \ R \ S \ T \ U \ V \ W \ X \ Y \ Z}
 $$
 
 ## `\mathbf`
 
 $$
-\mathbf{A \ B C \ D \ E \ F \ G \ H \ I \ J \ K \ L \ M \ N \ O \ P \ Q \ R \ S \ T \ U \ V \ W \ X \ Y \ Z}
+\mathbf{A \ B \ C \ D \ E \ F \ G \ H \ I \ J \ K \ L \ M \ N \ O \ P \ Q \ R \ S \ T \ U \ V \ W \ X \ Y \ Z}
 $$
 
 ## `\mathsf`
 
 $$
-\mathsf{A \ B C \ D \ E \ F \ G \ H \ I \ J \ K \ L \ M \ N \ O \ P \ Q \ R \ S \ T \ U \ V \ W \ X \ Y \ Z}
+\mathsf{A \ B \ C \ D \ E \ F \ G \ H \ I \ J \ K \ L \ M \ N \ O \ P \ Q \ R \ S \ T \ U \ V \ W \ X \ Y \ Z}
 $$
 
 ## `\mathfrak`
@@ -43,5 +43,5 @@ $$
 ## `\text`
 
 $$
-\text{A \ B C \ D \ E \ F \ G \ H \ I \ J \ K \ L \ M \ N \ O \ P \ Q \ R \ S \ T \ U \ V \ W \ X \ Y \ Z}
+\text{A B C D E F G H I J K L M N O P Q R S T U V W X Y Z}
 $$

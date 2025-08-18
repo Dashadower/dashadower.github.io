@@ -30,7 +30,7 @@ $$
 But with lambda expressions, this gets simplified into:
 
 $$
-\text{integrate}(0, 1, \lambda x. x^2 + 1)
+\mathcal{integrate}(0, 1, \lambda x. x^2 + 1)
 $$
 
 the $\lambda$-calculus we will be looking at in this chapter only works with *untyped* $\lambda$-calculus. This means we don't consider the types of variables and expressions. Untyped $\lambda$-calculus is simpler to describe, but isn't sufficient in describing mathematical logic. We need *typed* $\lambda$-calculus as a stronger tool.

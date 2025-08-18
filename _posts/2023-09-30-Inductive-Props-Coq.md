@@ -27,6 +27,7 @@ $$
   \hline
   S \ n: \mathsf{nat}
 \end{array}
+
 $$
 
 To show that an object is a member of a type, you must be able to construct the object using the definitions of the type.
