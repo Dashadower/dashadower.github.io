@@ -1,21 +1,9 @@
 <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-TeX: { equationNumbers: { autoNumber: "AMS" } },
-tex2jax: {
-    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-    processEscapes: true
-}
-});
-
 window.MathJax = {
-    loader: {
-
-    },
     tex: {
         tags: "ams",
-        inlineMath: [ ['$','$'] ],
-        displayMath: [ ['$$','$$'] ],
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
         processEscapes: true
     },
     svg: {
