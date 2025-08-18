@@ -13,6 +13,7 @@ The main idea is to partition the program state into disjoint portions. This mak
 ## Magic Wand
 
 testing mathjax 
+
 $$
 \newcommand\sepimp{\mathrel{-\mkern-6mu*}}
 P \ \sepimp \ Q
