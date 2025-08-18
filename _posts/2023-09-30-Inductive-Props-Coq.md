@@ -73,10 +73,10 @@ Inductive ev : nat -> Prop :=
 
 Coq converts the type `nat -> Prop`, where `nat = n, Prop =  ev n -> ev (S (S n)) (-> here is implication)`, into a proposition through curry-howard correspondence. Converting the proposition back to types work the same way:
 
-1. $\forall n: \mathsf{nat}$ becomes a function argument that admits some `nat` as `n`.
-2. For the implication $\mathsf{ev} \ n \rightarrow \mathsf{ev} \ S \ (S \ n)$,
-    1. The antecedent $\mathsf{ev} \ n$ is created from a function `nat -> Prop` which takes `n` from #1 and returns `ev n`.
-    2. The implication is true if a function with type `Prop -> Prop`, which accepts `ev n` from 2-1, returns a type corresponding to the consequent $\mathsf{ev} \ S \ (S \ n)$, `ev S (S n)`.
+1. $$\forall n: \mathsf{nat}$$ becomes a function argument that admits some `nat` as `n`.
+2. For the implication $$\mathsf{ev} \ n \rightarrow \mathsf{ev} \ S \ (S \ n)$$,
+    1. The antecedent $$\mathsf{ev} \ n$$ is created from a function `nat -> Prop` which takes `n` from #1 and returns `ev n`.
+    2. The implication is true if a function with type `Prop -> Prop`, which accepts `ev n` from 2-1, returns a type corresponding to the consequent $$\mathsf{ev} \ S \ (S \ n)$$, `ev S (S n)`.
 
 Note that this implies `ev_SS` having type `nat -> Prop -> Prop`, which is exactly what we defined!
 

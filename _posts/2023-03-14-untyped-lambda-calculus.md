@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Untyped $\lambda$-Calculus
+title: Untyped $$\lambda$$-Calculus
 usemathjax: true
 ---
 
-In simple terms, $\lambda$-calculus is a way to specify *function applications* without actually defining their names. Normally in programming, we can define a function like so:
+In simple terms, $$\lambda$$-calculus is a way to specify *function applications* without actually defining their names. Normally in programming, we can define a function like so:
 ```
 let f(x) = x * x + 1 in B
 ```
@@ -15,13 +15,13 @@ $$
 \mathbf{let} \ f = \lambda x. x \times x + 1 \ \mathbf{in} \ B
 $$
 
-The "function declaration" in the above statement, $\lambda x. x * x + 1$ is called a *lambda expression* or an *abstraction*, which is saying "when this is applied to some $x$, it returns $x \times x + 1$". Note that a lambda expression/abstraction doesn't give notions on what $x$ is. The only thing it implies is the relationship between some operand $x$ and operator $x \times x + 1$.
+The "function declaration" in the above statement, $$\lambda x. x * x + 1$$ is called a *lambda expression* or an *abstraction*, which is saying "when this is applied to some $$x$$, it returns $$x \times x + 1$$". Note that a lambda expression/abstraction doesn't give notions on what $$x$$ is. The only thing it implies is the relationship between some operand $$$x$ and operator $$x \times x + 1$$.
 
 **Note that abstractions are not functions!!** Abstractions can be used to denote a function application, but doesn't always define a function by itself.
 
 This is why unnamed functions in typical programming languages are called *lambda functions*, because a lambda function yields some value defined by relationships between its arguments and the function body. Hence it's an "unnamed function".
 
-Suppose lambda expressions didn't exist. All function calls must be declared with let terms. For example, say we wanted to calculate $\int_0^1 x^2 + 1$ with a defined integration function `integrate(lb, ub, f)`. This can be written as:
+Suppose lambda expressions didn't exist. All function calls must be declared with let terms. For example, say we wanted to calculate $$\int_0^1 x^2 + 1$$ with a defined integration function `integrate(lb, ub, f)`. This can be written as:
 
 $$
 \mathbf{let} \ f(x) = x^2 + x \ \mathbf{in} \ \text{integrate}(0, 1, f)
@@ -33,10 +33,10 @@ $$
 \mathcal{integrate}(0, 1, \lambda x. x^2 + 1)
 $$
 
-the $\lambda$-calculus we will be looking at in this chapter only works with *untyped* $\lambda$-calculus. This means we don't consider the types of variables and expressions. Untyped $\lambda$-calculus is simpler to describe, but isn't sufficient in describing mathematical logic. We need *typed* $\lambda$-calculus as a stronger tool.
+the $\lambda$-calculus we will be looking at in this chapter only works with *untyped* $$\lambda$$-calculus. This means we don't consider the types of variables and expressions. Untyped $$\lambda$$-calculus is simpler to describe, but isn't sufficient in describing mathematical logic. We need *typed* $$\lambda$$-calculus as a stronger tool.
 
 ### Syntax and Basic Rules
-$\lambda$-calculus is composed of expressions called *$\lambda$-terms*. We will define the set of all lambda terms $E$, inductively, like from formal logic:
+$$\lambda$$-calculus is composed of expressions called *$$\lambda$$-terms*. We will define the set of all lambda terms $$E$$, inductively, like from formal logic:
 
 $$
 \begin{aligned}
@@ -46,9 +46,9 @@ E &\rightarrow x, \ x \in V \\
 \end{aligned}
 $$
 
-1. A term of form $x$, where $x$ is in some set of variables $V$, denotes a *variable*.
-2. A term of form $\lambda x. E$, is called a *lambda expression* or to reduce confusion, also called an *abstraction*.
-3. A term of form $E_0 \ E_1$ is called *application* of $E_0$ to $E_1$. Equivalently, we see $E_0$ as the *operator* and $E_1$ as *operand*.
+1. A term of form $$x$$, where $$x$$ is in some set of variables $$V$$, denotes a *variable*.
+2. A term of form $$\lambda x. E$$, is called a *lambda expression* or to reduce confusion, also called an *abstraction*.
+3. A term of form $$E_0 \ E_1$$ is called *application* of $$E_0$$ to $$E_1$$. Equivalently, we see $$E_0$$ as the *operator* and $$E_1$$ as *operand*.
 
 Application is left associative, meaning
 
