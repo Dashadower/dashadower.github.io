@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Coq Tactics
+title: Iris Tactics
 usemathjax: true
 ---
 
@@ -215,7 +215,6 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 -  `subst` : Substitute away all assumptions of the form `x = e` or `e = x` (where `x` is a variable).
 
 -  `rename... into...` : Change the name of a hypothesis in the proof context. For example, if the context includes a variable named `x`, then `rename x into y` will change all occurrences of `x` to `y`
-- `rename x into y, a into b` : performan multiple rewrites simultaneously.
 
 -  `assumption` : Try to find a hypothesis `H` in the context that exactly matches the goal; if one is found, solve the goal
 
@@ -251,15 +250,6 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
   This is the same as `(specialize H 0 1)`, except specialize replaces the original `H` with the instantiated version.
 
 - `pose proof P as X`: ...or as hypothesis name `X`.
-
-### `Cut`
-
-Suppose the goal is `Q`. We might want to prove the goal by showing `P -> Q`. Running `cut P` does the following:
-
-1. It instantiates `P -> Q` as a goal.
-2. It also instantiates `P` as a goal.
-
-You can see that `cut P` is an abbreviation for `assert (H: P -> {Goal}). apply H`.
 
 ### Display, does not alter proof state
 
