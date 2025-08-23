@@ -37,7 +37,7 @@ Publications
 --------------------
 
 #### International
-* "Simulation-Based Calibration Checking for Bayesian Computation: The Choice of Test Quantities Shapes Sensitivity", Martin Modrák, Angie H. Moon, **Shinyoung Kim**, Paul Bürkner, Niko Huurre, Kateřina Faltejsková, Andrew Gelman, Aki Vehtari, 2022, arXiv preprint (<https://arxiv.org/abs/2211.02383>)
+* "Simulation-Based Calibration Checking for Bayesian Computation: The Choice of Test Quantities Shapes Sensitivity", Martin Modrák, Angie H. Moon, **Shinyoung Kim**, Paul Bürkner, Niko Huurre, Kateřina Faltejsková, Andrew Gelman, Aki Vehtari, 2025, Bayesian Analysis  <https://doi.org/10.1214/23-BA1404>
 
 * “Implementation of user playstyle coaching using video processing and statistical methods in league of legends”, **Shinyoung Kim**, Dohyeon Kim, HyungGeun Ahn, Byeongtae Ahn, 2020, published on Multimedia Tools and Applications (<https://doi.org/10.1007/s11042-020-09413-4>)
 
