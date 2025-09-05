@@ -26,10 +26,15 @@ usemathjax: true
 <br><br>
  The question mark in front of the variable is needed to indicate that it is a variable in the search pattern, rather than a variable that is expected to be in scope currently.
 
-Search only lemmas(works for `Theorem`, `Example`, `Definition`, etc.):
+Searching for only lemmas(works for `Theorem`, `Example`, `Definition`, etc.):
 
 ```coq
 Search is:Lemma (_ + _ = _ + _)
+```
+
+If you want to find lemmas whose names contain a string:
+```coq
+Search is:Lemma "some_string"
 ```
 
 ### `Check x`
