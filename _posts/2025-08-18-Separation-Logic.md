@@ -64,7 +64,7 @@ The wand has the following properties:
 
 ## Weakest Precondition
 
-The notion of hoare triples can be rewritten in something called "weakest preconditions":
+The notion of hoare triples can be rewritten into something called "weakest preconditions":
 $$
 H \Rightarrow \wp{c}{Q} \iff \{H \} \ c \{ Q \}
 $$

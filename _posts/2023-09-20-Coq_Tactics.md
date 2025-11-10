@@ -223,6 +223,8 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 
 -  `constructor` : Try to find a constructor `c` (from some Inductive definition in the current environment) that can be applied to solve the current goal. If one is found, behave like `apply c`
 
+- `constructor i` : Try to apply the ith constructor of the inductive definition to the current goal.
+
 - `all: ` : run tactic on all remaining goals. Useful when running chained tactics with `;`. example: `all: unfold not; intros. inversion H`
 
 - `specialize H` : replaces a given hypothesis with that hypothesis applied to some other term.
