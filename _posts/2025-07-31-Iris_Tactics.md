@@ -26,6 +26,7 @@ https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/proof_mode.md
 
 - `iIntros.`: Same as `intros`. From my experience, it was simplier to intros specifically as much as possible. Start by iIntros-ing in bulk, and dissect as much as possible.
     - `iIntros "H".`: `intros H`
+    - `iIntros "H1 H2."` : Intros multiple hypothesis in chained magic wands.
     - `iIntros "[H1 H2]"` : Used to intros `P * Q` separately into spatial context.
     - `iIntros "H1 & H2 & H3".`: Used to intros multiple hypothesis at once. `(H1 & .. & H2 & H3) = [H1 .. [H2 H3] ..]`. 
     - `iIntros "[HP HQ]".`: Used to intros `P ∨ Q`.
@@ -54,8 +55,8 @@ https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/proof_mode.md
 - `iPureIntro.`: Intros pure hypothesis `⌜...⌝` directly into coq context.
 - `iModIntro.`: Remove update modality(`|==>`) or later modality in the goal.
 - `iMod "H" as "H1"`: Remove a modality from hypothesis `H`
-- `iNext.`: Strip all later modalities from the goal and context. This requires a modality in the goal
-- `iCombine "Hl1 Hl2" as "Hl"`: Combine fractional ownership into full ownership
+- `iNext.`: Strip all later modalities(`▷`) from the goal and context. This requires a modality in the goal
+- `iCombine "Hl1 Hl2" as "Hl"`: Combine multiplicative (`⋅`) ownership into full ownership. e.g) combining fractioinal and authorative RA.
     - `iCombine "Hl1 Hl2" as "Hl" gives "%Hvalid"`: and provide a validity hypothesis `Hvalid`
 - `iAssert (...)%I with "[H1 H2]" as "H4"`: assert `...` using `H1, H2` and name it as `H4`. `...` must be `iProp`. 
     - `iAssert (⌜...⌝)%I as "%H4"` for pure hypotheses.
