@@ -54,6 +54,8 @@ Rat is a probabilistic programming language focused on simplicity in writing hie
 * **SBC** (<https://github.com/hyunjimoon/SBC>)
 A R package for Simulation Based Calibration on Stan and brms models in collaboration with Hyunji Moon, Martin Modrák, and Teemu Säilynoja. I wrote the initial version and am currently helping maintaining the package which contains various tools for running SBC and analyzing results.
 
+* **Stanify** (<https://github.com/Data4DM/stanify>)
+A framework for specifying stan models on top of Vensim system dynamics models. Made a Vensim-to-Stan transpiler and a domain specific language for bayesian probabilistic programming.
 
 Skills
 --------------------
