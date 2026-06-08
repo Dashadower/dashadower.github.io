@@ -7,13 +7,13 @@ usemathjax: true
 Traditional induction on nat is defined as the following:
 
 $$
-/frac{ P \ 0 \quad \forall n. P \ n \rightarrow P \ n + 1 }{ \forall n. P n }
+\frac{ P \ 0 \quad \forall n. P \ n \rightarrow P \ n + 1 }{ \forall n. P n }
 $$
 
 Strong induction assumes $$P$$ holds for all nats smaller than $$n$$:
 
 $$
-/frac{ \forall n. (\forall m. (m < n \rightarrow P \ m)) \rightarrow P n }{ \forall n. P n }
+\frac{ \forall n. (\forall m. (m < n \rightarrow P \ m)) \rightarrow P n }{ \forall n. P n }
 $$
 
 Note that the lessthan operator and the definition of nats are doing the heavy lifting here:
@@ -32,7 +32,7 @@ $$
 The well-founded relation $$R$$ gives us the ability to derive subterm(s) $$y$$ from $$x$$, which are decreasing and finitely reducible.
 
 In coq you can do this by using `Program Fixpoint` if a measure function that maps to nat is definable. 
-Or you can define $$R$$,prove $$well_founded R$$, pass $$H : Acc R _$$ as an arg and declare `struct H` to say the relation itself is the decreasing argument.
+Or you can define $$R$$,prove $$well\_founded R$$, pass `H : Acc R _` as an arg and declare `struct H` to say the relation itself is the decreasing argument.
 
 ```
 Inductive Acc (A : Type) (R : A -> A -> Prop) (x : A) : Prop :=
