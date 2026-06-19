@@ -49,10 +49,13 @@ Projects
 --------------------
 
 * **Rat** (<https://github.com/bbbales2/regressions>, [slides](https://docs.google.com/presentation/d/1osPHI-tehvQaKrLM5F6ctAWUJoHXpM5ozGxpqkJt1do/edit?usp=sharing))
-Rat is a probabilistic programming language focused on simplicity in writing hierarchical bayesian models. It uses the notion of subscripted variables combined with categorical data to elegantly express nested hierarchical models. The original library included a crude Pratt parser and a compiler for transpiling into a Python module. After multiple refactors(read as rewrites), rat code is now generated and executed dynamically through Jax JIT.
+Rat is a probabilistic programming language focused on simplicity in writing hierarchical bayesian models. It uses the notion of subscripted variables combined with categorical data to elegantly express nested hierarchical models. The original library included a crude Pratt parser and a compiler for transpiling into a Python module. After multiple refactors(read as rewrites), Rat code is now generated and executed dynamically through Jax JIT.
+
+* **TraceInspector** (<https://github.com/kookmin-sw/2026-capstone-02>)
+My bachelor's graduation project. Implements a simple abstract interpreter for a subset of Go and animates fixpoint computation on the program state as an interactive web interface. 
 
 * **SBC** (<https://github.com/hyunjimoon/SBC>)
-A R package for Simulation Based Calibration on Stan and brms models in collaboration with Hyunji Moon, Martin Modrák, and Teemu Säilynoja. I wrote the initial version and am currently helping maintaining the package which contains various tools for running SBC and analyzing results.
+A R package for Simulation Based Calibration on Stan and brms models in collaboration with Hyunji Moon, Martin Modrák, and Teemu Säilynoja. I wrote the initial version and helped maintain the package which contains various tools for running SBC and analyzing results.
 
 * **Stanify** (<https://github.com/Data4DM/stanify>)
 A framework for specifying stan models on top of Vensim system dynamics models. Made a Vensim-to-Stan transpiler and a domain specific language for bayesian probabilistic programming.
