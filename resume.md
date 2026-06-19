@@ -16,13 +16,13 @@ Education
 
 Experience
 ----------
-* **Winter Research Program in collaboration with Columbia University** 2022 Jan.-2022-March
+* **Winter Research Program on Modular Stan** 2022 Jan.-2022-March
  
-  Worked on developing algorithms that can explore a network of models written in Modular Stan. Wrote Haskell code to extend the modular stan library and presented our results to a research seminar. [slides](https://docs.google.com/presentation/d/1bMklK6OOARYEEfbHfH9MbOip8qJHcM6de22lvodDFDQ/edit?usp=sharing)
+  Worked on developing algorithms that can explore a network of models written in Modular Stan. Wrote Haskell code to extend the modular stan library and presented our results to a research seminar @ Columbia University and Stan devs. [slides](https://docs.google.com/presentation/d/1bMklK6OOARYEEfbHfH9MbOip8qJHcM6de22lvodDFDQ/edit?usp=sharing)
 
 * **Stan Development Team (Stan, <https://mc-stan.org/>)** - Development Team Member, 2020 Nov.-2022
   
-  Implemented automatic differentiation variational inference algorithms for Bayesian inference in Stan with multiple collaborators using C++. Other contributions, such as new math functions for the Stan Math Library, and interface improvements have been submitted and merged. As part of the Stan community, Additionally helped organize a community session and seminar on Simulation Based Calibration for 100 participants, successfully running a tutorial session and lectures.
+  Implemented automatic differentiation variational inference algorithms for Bayesian inference in Stan with multiple collaborators using C++. Other minor contributions, such as new math functions for the Stan Math Library and interface improvements have been submitted and merged. As part of the Stan community helped organize a community session and seminar on Simulation Based Calibration for 100 participants, successfully running a tutorial session and lectures.
 
 * **NextOpt** - Software Developer,  2020 Jan.-2022
 
@@ -63,6 +63,6 @@ A framework for specifying stan models on top of Vensim system dynamics models. 
 Skills
 --------------------
 
-Programming: Python (High), C/C++ (High), R (High), Javascript/ES6(Intermediate)
+Programming: Go, Coq, Python, C++
 
 Language skills : Korean(native), English(Fluent)
