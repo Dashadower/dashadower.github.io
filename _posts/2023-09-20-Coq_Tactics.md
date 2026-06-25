@@ -227,6 +227,8 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 
 - `constructor i` : Try to apply the ith constructor of the inductive definition to the current goal.
 
+- `discriminate` : Solves the goal on proving dicrimination between constructors, like `Some x <> None`.
+
 - `all: ` : run tactic on all remaining goals. Useful when running chained tactics with `;`. example: `all: unfold not; intros. inversion H`
 
 - `specialize H` : replaces a given hypothesis with that hypothesis applied to some other term.
