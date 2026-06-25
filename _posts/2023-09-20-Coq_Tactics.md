@@ -143,6 +143,8 @@ analysis. `x` can be an inductively defined type or an equation that yields an i
 
     Ex falso quodlibet. If a hypothesis is a `False`, complete the proof.
 
+- `destruct (e _) as H` : destruct on the term that matches `e _`, where the underscore indicates a term that follows `e`.
+
 - `induction x as ...`: induction on values of inductively
 defined types
 
