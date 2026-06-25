@@ -77,7 +77,7 @@ But in coinduction we're given a set of functions which *pull out* from the elem
 
 Coinduction is sort of an extensinal view, in the sense that we're not reasoning about the underlying object directly but just through its destructors/observable cases.
 
-An infinite stream with element type $$A$$ is defined in coq as the following:
+<!-- An infinite stream with element type $$A$$ is defined in coq as the following:
 ```coq
 CoInductive stream (A : Type) : Type :=
   | Cons A -> stream A -> stream A.
@@ -91,7 +91,7 @@ Definition hd {A : Type} (s : stream A) : A :=
   match s with
   | Cons _ x _ => x
   end.
-```
+``` -->
 
 Just as homomorphisms between algebras existed and we had an initial algebra which had for all other algebras a unique homomorphism that connected the initial algebra to others, the dual of both concepts exist in coalgebras.
 
