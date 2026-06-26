@@ -31,7 +31,7 @@ This means from the interpretation $$T(\mathsf{list} \ A)$$ we can derive $$\mat
 The functor $$T(X)$$ above is a cotuple of two function signatures: $$1 \rightarrow X$$ and $$A \times X \rightarrow X$$.
 There are many algebras definable for the given functor, but we are interested in the one that gives us the "smallest" possible defintion of $$X$$. Such "smallest" algebra gives us the smallest set of elements closed under its constructors, which naturally becomes the least fixed point of the functor(We're just applying the constructors to create its elements). This is why an inductive definition is often described as the least fixpoint $$T(\mu x) \rightarrow \mu x$$.
 
-If we have a functor $$T(X) = X * X$$, there's no way to actually create an algebra from the given signature since we can't start from anything that's not in $$X$$. Hence in this case the lfp and the initial algebra will be the empty type.
+If we have a functor $$T(X) = X * X$$, there's no way to actually create an element from a given interpretation since we can't start from anything that's not in $$X$$. Hence in this case the lfp and the initial algebra will be the empty type.
 
 If we wish to do induction for a prop $$P \subseteq \mathsf{list} \ A$$ over lists, we show the following:
 - show $$P(\mathsf{nil})$$ holds
@@ -40,9 +40,7 @@ If we wish to do induction for a prop $$P \subseteq \mathsf{list} \ A$$ over lis
 Suppose we set $$S_P := \{ l \ | \ P \ l\}$$. The above proof is showing that $$\mathsf{nil} \in S_P$$, and for any $$l \in S_P$$, the results of applying the constructor should also be in $$S_P$$. 
 You can naturally see how the curry-howard correspondence appears here, in that a proof of $$P$$ is equal to showing the construction of $$P \ x$$ is possible (or is a member of $$S_P$$ in views of sents).
 
-If an algebra has an unique homomorphism to all other algebras of the given functor, it's called the initial algebra of the functor. All the inductive types we define in coq are the initial algebra of their respective functors.
-
-Initial algebras generalize the notion of the above sentence: "the results of applying the constructor should also be in $$S_P$$".
+If an algebra has an unique homomorphism to all other algebras of the given functor, it's called the initial algebra of the functor. In Coq the inductive types we normally define act as the initial algebra of their respective functors.
 
 ![list_ind](https://raw.githubusercontent.com/Dashadower/dashadower.github.io/master/images/coind_list_induction.png)
 
@@ -95,12 +93,12 @@ Definition hd {A : Type} (s : stream A) : A :=
 
 Just as homomorphisms between algebras existed and we had an initial algebra which had for all other algebras a unique homomorphism that connected the initial algebra to others, the dual of both concepts exist in coalgebras.
 
-A final coalgebra is an algebra such for for all other coalgebras there exists a unique homomorphism from them to the final coalgebra. The homomorphism goes into the final coalgebra - opposite of iitial algebras:
+A final coalgebra is a coalgebra such for for all other coalgebras there exists a unique homomorphism from them to the final coalgebra. The homomorphism goes into the final coalgebra - opposite of iitial algebras:
 
 ![list_ind](https://raw.githubusercontent.com/Dashadower/dashadower.github.io/master/images/coind_final_coalgebra.png)
 
 Now the final coalgebra is the greatest fixpoint $$\nu x \rightarrow T(\nu x)$$ derivable from the functor and represents 
-the "biggest" set of elements derivable. 
+the "biggest" set of observable/actionable results. 
 The intuition for why we need the gfp is because in an coinductive definition there's always something to deconstruct, even after possibly applying a destructor infinite amount of times. So we need the "largest" constructions possible.
 
 The tutorial mentions that functions/props defined on coinductive structures need to be defined wrt $$T(U)$$ instead of $$U$$ itself. This means in the case of streams, merging two streams $$u, u' \in U$$ element-by-element becomes:
