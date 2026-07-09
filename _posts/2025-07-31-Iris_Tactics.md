@@ -50,6 +50,7 @@ https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/proof_mode.md
 - `iLeft. iRight.`: Same as `left. right.`
 - `iExists x.`. Same as `exists x.` `x` is from the pure context.
 - `iDestruct "H" as "[Hx _]".`: Same as `destruct H as (Hx _)`. Useful for destructing conjunctions in a hypothesis
+    - `iDestruct "H" as (v1 v2) "H'"`: Given an iProp `H` of the form `∃ v1 v1, H`, move `v1, v2` into the pure context and use `H'` to destruct prop.
 - `iPoseProof "H" as "[Hx _]".`: Same as `iDestruct` but leaves `H`
     - `iPoseProof (some_lemma with "arg1 arg2") as "H".` : introduce some_lemma with args as hypothesis
 - `iPureIntro.`: Intros pure hypothesis `⌜...⌝` directly into coq context.
