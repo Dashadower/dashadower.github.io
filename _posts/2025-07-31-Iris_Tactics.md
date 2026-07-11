@@ -37,6 +37,7 @@ https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/proof_mode.md
     - `iIntros "#H".`: Intros a persistent hypothesis into the persistent context as `H` 
     - `iIntros "... !>"`: Call `iModIntro` before introsing, removing later modalities
     - `iIntros ">H"`: Call `iMod` in `H` before introsing, removing modalities from `H`
+    - `iIntros (H_pure) "H_iris"` : intros pure stuff as `H_pure`, and use `H_iris` pattern for iris stuff.
     
 - `iFrame.`: Discharge immediate goals from a separating conjunction.
     - `iFrame "#"`: Use persistent hypotheses
@@ -64,6 +65,7 @@ https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/proof_mode.md
 - `iLöb as "IH" forall (x y).`: Perform lob induction wrt to `x` and `y`.
 - `iInv "Hinv" as "H"`: OPen an invariant `Hinv` as `H`
 - `iMod (inv_alloc Inv with "[...]") as "#Hinv"`: open an invariant
+- `iUnfold def in "H"`: perform `unfold def` in iris hypothesis `H`
 
 ## Heaplang tactics
 https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/heap_lang.md
