@@ -62,6 +62,7 @@ https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/proof_mode.md
     - `iCombine "Hl1 Hl2" as "Hl" gives "%Hvalid"`: and provide a validity hypothesis `Hvalid`
 - `iAssert (...)%I with "[H1 H2]" as "H4"`: assert `...` using `H1, H2` and name it as `H4`. `...` must be `iProp`. 
     - `iAssert (⌜...⌝)%I as "%H4"` for pure hypotheses.
+- `iInduction x as d_pat "IH" forall (y z).`: perform standard induction on `x`, using `d_pat` as the pattern, `IH` as the induction hypothesis and revert variables `y, z`
 - `iLöb as "IH" forall (x y).`: Perform lob induction wrt to `x` and `y`.
 - `iInv "Hinv" as "H"`: OPen an invariant `Hinv` as `H`
 - `iMod (inv_alloc Inv with "[...]") as "#Hinv"`: open an invariant

@@ -167,6 +167,7 @@ lemma" `e` and call it `H` (보조정리 도입)
 - `generalize dependent x`: move the variable `x` (and anything
 else that depends on it) from the context back to an explicit
 hypothesis in the goal formula. (reverses `intros` and converts to universal quantification)
+    - `generalize x at n m` : revert `x` at the `n`th, `m` th position in the goal.
 
 - `revert x` : weaker version of `generalize dependent`
 
