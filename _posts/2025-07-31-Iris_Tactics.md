@@ -24,7 +24,7 @@ Iris uses ssreflect internally. This means the following changes are made to gal
 ## tactics
 https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/proof_mode.md
 
-- `iIntros.`: Same as `intros`. From my experience, it was simplier to intros specifically as much as possible. Start by iIntros-ing in bulk, and dissect as much as possible.
+- `iIntros.`: Same as `intros`. From my experience, it was simplier to intros specifically as much as possible. Start by iIntros-ing in bulk, and dissect as much as possible. Some intro patterns:
     - `iIntros "H".`: `intros H`
     - `iIntros "H1 H2."` : Intros multiple hypothesis in chained magic wands.
     - `iIntros "[H1 H2]"` : Used to intros `P * Q` separately into spatial context.
@@ -95,4 +95,5 @@ https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/heap_lang.md
 - `\valid` : `✓`
 - `\incl` : `≼`
 - `\auth` : `●`
-\ `\frag` : `◯`
+- `\frag` : `◯`
+- `\==` : `≡`
