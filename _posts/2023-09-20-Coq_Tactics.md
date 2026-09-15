@@ -259,6 +259,8 @@ hypothesis in the goal formula. (reverses `intros` and converts to universal qua
 
 - `pose proof P as X`: ...or as hypothesis name `X`.
 
+- `instantiate (N := term)`: Fill in the `N`th "hole"(`?x`) with `term`
+
 ### `Cut`
 
 Suppose the goal is `Q`. We might want to prove the goal by showing `P -> Q`. Running `cut P` does the following:
