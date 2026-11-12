@@ -50,6 +50,7 @@ https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/proof_mode.md
 - `iSplit.`: Break apart a bidirectional entailment(`⊣⊢`) just like iff
 - `iLeft. iRight.`: Same as `left. right.`
 - `iExists x.`. Same as `exists x.` `x` is from the pure context.
+    - `iExists x, y, z` : specialize multiple existentials as once.
 - `iDestruct "H" as "[Hx _]".`: Same as `destruct H as (Hx _)`. Useful for destructing conjunctions in a hypothesis
     - `iDestruct "H" as (v1 v2) "H'"`: Given an iProp `H` of the form `∃ v1 v1, H`, move `v1, v2` into the pure context and use `H'` to destruct prop.
 - `iPoseProof "H" as "[Hx _]".`: Same as `iDestruct` but leaves `H`
@@ -67,6 +68,7 @@ https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/proof_mode.md
 - `iInv "Hinv" as "H"`: OPen an invariant `Hinv` as `H`
 - `iMod (inv_alloc Inv with "[...]") as "#Hinv"`: open an invariant
 - `iUnfold def in "H"`: perform `unfold def` in iris hypothesis `H`
+- `iSimpl in "H"`. perform simpl in "H". Same as `iEval (simpl) in "H"`.
 
 ## Heaplang tactics
 https://gitlab.mpi-sws.org/iris/iris/-/blob/master/docs/heap_lang.md
