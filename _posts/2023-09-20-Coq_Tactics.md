@@ -74,7 +74,9 @@ the goal. Frequently `x` is a function. (함수 전개)
 - `destruct x as ...`: case analysis on values of inductively
 defined type `x`. 
 
-    e.g) `p = X * Y; destruct p as (x, y)`
+    - `p = X * Y: destruct p as (x, y)`
+    - `p = X + Y : destruct p as [x | y]`
+
 
 - `destruct x eqn:E`: specify the name of an equation(`E`) to be
 added to the context, recording the result of the case
